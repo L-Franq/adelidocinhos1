@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.3);
+  max-height: 400px;
+}
+
+main {
+  margin: 0 7px;
+  margin-bottom: 38px;
+  padding: 35px 25px;
+  background-color: #132640;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  display: flex;
+  gap: 6px;
+  height: 90%;
+}
+
+header {
+  margin: 35px 7px;
+  padding: 40px 25px;
+  background-color: #011826;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-flow: row wrap;
+  gap: 4px;
+}
+
+header .horario {
+  border: 3px double #f2aee0;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  flex: 1;
+  padding: 5px;
+}
+
+header .horario p {
+  margin-bottom: 2px;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+header .botoes {
+  border: 3px double #f2aee0;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  flex: 1;
+  padding: 0 5px 0 64px;
+}
+
+header .botoes button {
+  padding: 10px;
+  color: #132640;
+  background-color: #fc80db;
+  border: none;
+  border-radius: 3px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+header .botoes button:hover {
+  background-color: #f2aee0;
+  transition: background-color 0.3s ease-in-out;
+  transform: scale(1.02);
+}
+
+main .adm {
+  flex: 0.3;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  background-color: #011826;
+}
+
+main .carregamentos {
+  flex: 1.2;
+  border: 3px double #f2aee0;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background-color: #011826;
+}
+
+.adm {
+  display: flex;
+  flex-flow: column;
+  height: 90%;
+}
+
+.adm div {
+  font-size: 10px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.adm div img {
+  border-radius: 50%;
+  width: 98px;
+  border: 3px solid #f2aee0;
+  cursor: pointer;
+}
+
+.adm .accoes {
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+  height: auto;
+}
+
+.adm div {
+  margin: 11px 3px;
+}
+
+.adm div button {
+  color: black;
+  background-color: #fc80db;
+  border: none;
+  border-radius: 3px;
+  margin: 3px 30px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.adm div button:hover {
+  transform: scale(1.02);
+}
