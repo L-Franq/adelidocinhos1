@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <title>Agenda Confeitaria</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #calendar {
+        max-width: 900px;
+        margin: 40px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calendar"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const calendarEl = document.getElementById("calendar");
+
+        let agenda = {};
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: "dayGridMonth",
+          events: [
+            {
+              title: "Teste",
+              start: "2026-01-15",
+            },
+          ],
+
+          dateClick: (info) => {
+            const  data = info.dateStr;
+
+            if(!agenda[data]){
+              agenda[data] = criarDia();
+            }
+
+            const dia = agenda[data];
+
+            const turno = prompt("Escolha o turno:  manha, tarde ou noite.");
+
+            if(!dia.slots.hasOwnProperty(turno)){
+              alert("Turno Invalido!");
+              return;
+            }
+
+            if(dia.slots[turno] === null){
+              dia.slots[turno] = "turno ocupado";
+              alert("Turno reservado com sucesso");
+
+              calendar.addEvent({
+                title: `Ocupado (${turno})`,
+                start: data,
+                allDay: true
+              });
+            }
+            else if(podeEntrarEspera(dia)){
+              dia.espera.push("user");
+              alert("Foi adicionado a lista de espera.");
+            }
+            else{
+              alert("Dia ocupado!");
+            }
+
+          },
+          
+        });
+        console.log(agenda);
+
+        function criarDia(){
+          return {
+            slots: {
+              manha: null,
+              tarde: null,
+              noite: null
+            },
+            espera: []
+          };
+
+        }
+
+        
+          function diaCheio(dia){
+            return object.values(dias.slots).every(slot => slot !== null);
+          }
+
+           function podeEntrarEspera(dia){
+            return dia.espera.length < 2;
+          }
+
+        calendar.render();
+      });
+    </script>
+  </body>
+</html>

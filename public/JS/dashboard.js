@@ -7,6 +7,7 @@ let agora = new Date();
 hoje.innerText = "Data: " + agora.toLocaleDateString();
 
 setInterval(() => {
+  let agora = new Date();
   hora.innerText = "Hora: " + agora.toLocaleTimeString();
 }, 1000);
 
