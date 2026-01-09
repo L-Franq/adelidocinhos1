@@ -24,15 +24,14 @@
         const calendarEl = document.getElementById("calendar");
 
         let agenda = {};
+        const coresTurno = {
+          manha: "#FFA500", //laranja
+          tarde: "#1E90FF",  // azul
+          noite: "#32CD32"   // verde
+        }
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: "dayGridMonth",
-          events: [
-            {
-              title: "Teste",
-              start: "2026-01-15",
-            },
-          ],
 
           dateClick: (info) => {
             const  data = info.dateStr;
@@ -41,7 +40,7 @@
               agenda[data] = criarDia();
             }
 
-            const dia = agenda[data];
+              const dia = agenda[data];
 
             const turno = prompt("Escolha o turno:  manha, tarde ou noite.");
 
@@ -57,7 +56,8 @@
               calendar.addEvent({
                 title: `Ocupado (${turno})`,
                 start: data,
-                allDay: true
+                allDay: true,
+                backgroundColor: coresTurno[turno]
               });
             }
             else if(podeEntrarEspera(dia)){
@@ -87,7 +87,7 @@
 
         
           function diaCheio(dia){
-            return object.values(dias.slots).every(slot => slot !== null);
+            return Object.values(dia.slots).every(slot => slot !== null);
           }
 
            function podeEntrarEspera(dia){
