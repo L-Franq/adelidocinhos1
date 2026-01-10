@@ -24,76 +24,110 @@
         const calendarEl = document.getElementById("calendar");
 
         let agenda = {};
+
         const coresTurno = {
-          manha: "#FFA500", //laranja
-          tarde: "#1E90FF",  // azul
-          noite: "#32CD32"   // verde
+          manha: "#FFA500",
+          tarde: "#1E90FF",
+          noite: "#32CD32",
+        };
+
+        function criarDia() {
+          return {
+            slots: {
+              manha: null,
+              tarde: null,
+              noite: null,
+            },
+            espera: [],
+          };
+        }
+
+        function diaCheio(dia) {
+          return Object.values(dia.slots).every((slot) => slot !== null);
+        }
+
+        function podeEntrarEspera(dia) {
+          return dia.espera.length < 2;
+        }
+
+        function atualizarDiaVisual(calendar, data, dia) {
+          // remover eventos antigos do dia
+          calendar.getEvents().forEach((event) => {
+            if (event.startStr === data) {
+              event.remove();
+            }
+          });
+
+          // eventos dos turnos
+          for (const turno in dia.slots) {
+            if (dia.slots[turno]) {
+              calendar.addEvent({
+                title: `Ocupado (${turno})`,
+                start: data,
+                allDay: true,
+                backgroundColor: coresTurno[turno],
+              });
+            }
+          }
+
+          // espera
+          if (dia.espera.length > 0) {
+            calendar.addEvent({
+              title: `⏳ Espera: ${dia.espera.length}`,
+              start: data,
+              allDay: true,
+              backgroundColor: "#999",
+            });
+          }
+
+          // bloqueio
+          if (diaCheio(dia)) {
+            calendar.addEvent({
+              title: "🔒 Dia bloqueado",
+              start: data,
+              allDay: true,
+              backgroundColor: "#333",
+            });
+          }
         }
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: "dayGridMonth",
 
-          dateClick: (info) => {
-            const  data = info.dateStr;
+          dateClick(info) {
+            const data = info.dateStr;
 
-            if(!agenda[data]){
+            if (!agenda[data]) {
               agenda[data] = criarDia();
             }
 
-              const dia = agenda[data];
+            const dia = agenda[data];
 
-            const turno = prompt("Escolha o turno:  manha, tarde ou noite.");
+            const turno = prompt("Escolha o turno: manha, tarde ou noite");
 
-            if(!dia.slots.hasOwnProperty(turno)){
-              alert("Turno Invalido!");
-              return;
-            }
+            if (!dia.slots.hasOwnProperty(turno)) return;
 
-            if(dia.slots[turno] === null){
+            if (dia.slots[turno] === null) {
               dia.slots[turno] = "turno ocupado";
-              alert("Turno reservado com sucesso");
 
               calendar.addEvent({
                 title: `Ocupado (${turno})`,
                 start: data,
                 allDay: true,
-                backgroundColor: coresTurno[turno]
+                backgroundColor: coresTurno[turno],
               });
-            }
-            else if(podeEntrarEspera(dia)){
+            } else if (podeEntrarEspera(dia)) {
               dia.espera.push("user");
-              alert("Foi adicionado a lista de espera.");
             }
             else{
-              alert("Dia ocupado!");
+              alert("Dia Lotado");
             }
 
+            atualizarDiaVisual(calendar, data, dia);
+
+            console.log(agenda);
           },
-          
         });
-        console.log(agenda);
-
-        function criarDia(){
-          return {
-            slots: {
-              manha: null,
-              tarde: null,
-              noite: null
-            },
-            espera: []
-          };
-
-        }
-
-        
-          function diaCheio(dia){
-            return Object.values(dia.slots).every(slot => slot !== null);
-          }
-
-           function podeEntrarEspera(dia){
-            return dia.espera.length < 2;
-          }
-
         calendar.render();
       });
     </script>
