@@ -21,6 +21,7 @@ const tabelas = [
     idMarc INTEGER PRIMARY KEY AUTOINCREMENT,
     dia TEXT NOT NULL,
     hora TEXT NOT NULL,
+    turno TEXT,
     lugar TEXT )`,
 
   `CREATE TABLE IF NOT EXISTS resumos(
