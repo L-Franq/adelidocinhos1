@@ -16,5 +16,5 @@ setInterval(() => {
 containerHorario.insertBefore(hora, hoje);
 
 btnCalendario.addEventListener("click", () => {
-  iframe.src = "/AgendaConfeitaria.html";
+  iframe.src = "/Agenda";
 });
