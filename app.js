@@ -9,4 +9,8 @@ require("./databases/init");
 const mainRoute = require("./routes/main");
 app.use(mainRoute);
 
+const dashboardRoute = require("./routes/dashboardRoutes");
+app.use(dashboardRoute);
+
+
 app.listen(PORT, () => console.log(`App running in ${PORT} port`));
