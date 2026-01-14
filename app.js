@@ -12,10 +12,12 @@ require("./databases/init");
 
 const mainRoute = require("./routes/main");
 const dashboardRoute = require("./routes/dashboardRoutes");
-const marcar = require("./routes/marcacoes");
+const fullCalendar = require("./routes/fullCalendarRoute");
 
 app.use(mainRoute);
 app.use(dashboardRoute);
-app.use(marcar);
+app.use(fullCalendar);
+
+
 
 app.listen(PORT, () => console.log(`App running in ${PORT} port`));

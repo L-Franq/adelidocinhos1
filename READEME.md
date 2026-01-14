@@ -38,6 +38,7 @@ O projeto está em desenvolvimento e será evoluído gradualmente conforme as ne
 - HTML5
 - CSS3
 - JavaScript
+- OBS: Tudo Vanilla(Todas as tecnologias puras, sem frameworks)
 
 ### Back-end
 

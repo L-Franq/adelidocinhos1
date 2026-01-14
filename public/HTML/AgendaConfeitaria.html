@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #calendar {
+        max-width: 900px;
+        margin: 40px auto;
+        color: #fc80db;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        background: #fff;
+        width: 350px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .modal-content h3 {
+        margin-top: 0;
+      }
+
+      .modal-content label {
+        display: block;
+        margin-top: 10px;
+      }
+
+      .modal-content input,
+      .modal-content select,
+      .modal-content textarea {
+        width: 100%;
+        padding: 6px;
+        margin-top: 4px;
+      }
+
+      .modal-content button {
+        margin-top: 15px;
+        width: 100%;
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      #fecharModal {
+        float: right;
+        font-size: 20px;
+        cursor: pointer;
+        color: red;
+      }
+    </style>
+    <title>Agenda Confeitaria</title>
+  </head>
+  <body>
+    <script>
+      window.USER_ROLE = "user";
+    </script>
+
+    <div id="calendar"></div>
+
+    <!-- MODAL USER -->
+    <div id="modalMarcacao" class="modal">
+      <div class="modal-content">
+        <span id="fecharModal">&times;</span>
+
+        <h3>Marcar Atividade</h3>
+
+        <form id="formMarcacao">
+          <input type="hidden" id="diaSelecionado" />
+
+          <label>Turno</label>
+          <select id="turno" required>
+            <option selected  value="">Selecione um turno</option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="noite">Noite</option>
+          </select>
+
+          <label>Hora</label>
+          <input type="time" id="hora" required />
+
+          <label>Descrição</label>
+          <textarea id="descricao" required></textarea>
+
+          <button type="submit">Confirmar</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="../JS/fullCalendar.js"></script>
+  </body>
+</html>
