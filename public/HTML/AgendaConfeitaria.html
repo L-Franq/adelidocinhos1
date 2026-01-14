@@ -93,7 +93,7 @@
 
           <label>Turno</label>
           <select id="turno" required>
-            <option selected  value="">Selecione um turno</option>
+            <option disabled selected  value="">Selecione um turno</option>
             <option value="manha">Manhã</option>
             <option value="tarde">Tarde</option>
             <option value="noite">Noite</option>
@@ -101,6 +101,9 @@
 
           <label>Hora</label>
           <input type="time" id="hora" required />
+
+           <label>Lugar</label>
+          <input type="text" id="lugar" required />
 
           <label>Descrição</label>
           <textarea id="descricao" required></textarea>

@@ -131,13 +131,14 @@ form.onsubmit = function (event) {
 
   const turno = document.getElementById("turno").value;
   const descricao = document.getElementById("descricao").value;
+  const lugar = document.getElementById("lugar").value;
 
   const dia = agenda[data];
 
   if (dia.slots[turno] === null) {
     dia.slots[turno] = { descricao };
   } else if (dia.espera.length < 2) {
-    dia.espera.push({ descricao });
+    dia.espera.push({ descricao },{lugar});
   } else {
     dia.bloqueado = true;
     alert("Dia lotado");
