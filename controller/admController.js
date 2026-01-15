@@ -2,7 +2,7 @@ const admModel = require("../models/admModel");
 
 async function getDadosAdm(req, res) {
     try{
-        const idAdm = 1; //depois vem da sessao
+        const idAdm = req.session.adm.id;
 
         const adm = await admModel.buscarNomeAdmPorId(idAdm);
         res.json(adm);
