@@ -1,16 +1,25 @@
-function mostarCadastro() {
-    document.getElementById("formLogin").classList.add("hidden");
+const aindaNaotenho = document.getElementById("aindaNaotenho");
+const jaTenho = document.getElementById("jaTenho");
+const formCadastro = document.getElementById("formCadastro");
+const formLogin = document.getElementById("formlogin");
+const titulo = document.getElementById("titulo");
 
-    document.getElementById("formCadastro").classList.remove("hidden");
+jaTenho.addEventListener("click", (event) => {
+  event.preventDefault();
 
-    document.getElementById("titulo").innerText="Cadastro";
-}
+  formCadastro.classList.add("hidden");
 
-function mostrarLogin(){
-   
-    document.getElementById("formCadastro").classList.add("hidden");
+  formLogin.classList.remove("hidden");
 
-        document.getElementById("formLogin").classList.remove("hidden");
+  titulo.innerText = "Login";
+});
 
-    document.getElementById("titulo").innerText="Login";
-}
+aindaNaotenho.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  formCadastro.classList.remove("hidden");
+
+  formLogin.classList.add("hidden");
+
+  titulo.innerText = "Cadastro";
+});

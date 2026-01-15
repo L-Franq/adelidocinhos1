@@ -13,10 +13,12 @@ require("./databases/init");
 const mainRoute = require("./routes/main");
 const dashboardRoute = require("./routes/dashboardRoutes");
 const fullCalendar = require("./routes/fullCalendarRoute");
+const userStuff = require("./routes/userRoutes");
 
 app.use(mainRoute);
 app.use(dashboardRoute);
 app.use(fullCalendar);
+app.use(userStuff);
 
 
 

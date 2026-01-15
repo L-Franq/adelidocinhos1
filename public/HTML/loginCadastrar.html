@@ -1,50 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login_Cadastro</title>
-    <link rel="stylesheet" href="">
-    
-</head>
-<body>
-    
-        <div class="container" >
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cadastrar_Cadastro</title>
+    <link rel="stylesheet" href="../CSS/loginCadastro.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="titulo">cadastrar</h2>
 
-           <h2 id="titulo">Login </h2> 
+      <form id="formCadastro">
+        <input id="cadastrarNome" type="text" placeholder="Nome" />
 
-           <form id="formCadastro" class="hidden" >
+        <input id="cadastrarEmail" type="e-mail" placeholder="e-mail" />
 
-            <input type="text" placeholder="Nome">
+        <input id="cadastrarTelefone"  type="text" placeholder="Telefone" />
 
-            <input type="e-mail" placeholder="e-mail">
+        <input id="cadastrarSenha"  type="Password" placeholder="Senha" />
 
-            <input type="text" placeholder="Telefone">
+        <input id="cadastrarConfirmSenha"  type="Password" placeholder="Confirmar senha " />
 
-            <input type="text" placeholder="Enderenço">
+        <button id="btnCadastrar">Cadastrar</button>
 
-            <input type="Password" placeholder="Senha">
+        <p id="jaTenho">Já tenho conta</p>
+      </form>
 
-            <input type ="Password" placeholder="Confirmar senha ">
+      <form id="formlogin" class="hidden">
+        <input id="loginEmail"  type="e-mail" placeholder="e-mail" />
 
-            <button>Cadastrar</button>
+        <input id="loginPassword"  type="Password" placeholder="Senha" />
 
-            <p onclick="mostrarLogin()"> Já tenho conta</p>
+        <button  id="btnLogin">Entrar</button>
 
-       </form>     
+        <p id="aindaNaotenho" >Cria Conta</p>
+      </form>
+    </div>
 
-        <form id="formLogin" >
-         <input type="e-mail" placeholder="e-mail">
-
-         <input type="Password" placeholder="Senha">
-
-         <a href="Tela_Usuario.html">Entrar</a>
-         <button>Entrar</button>
-
-         <p onclick="mostarCadastro()">Cria Conta</p>
-       </form>
-       </div>
-       <script src="../JS/script.js"></script>s
-    
-</body>
+    <script src="../JS/loginCadastrar.js"></script>
+  </body>
 </html>
