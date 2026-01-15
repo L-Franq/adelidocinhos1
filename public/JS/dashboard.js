@@ -3,6 +3,7 @@ const hoje = document.getElementById("hoje");
 const containerHorario = document.getElementById("horario");
 const btnCalendario = document.getElementById("carrgarCalendario");
 const iframe = document.getElementById("dashboardIframe");
+const admNome = document.getElementById("admName");
 
 let agora = new Date();
 
@@ -17,4 +18,13 @@ containerHorario.insertBefore(hora, hoje);
 
 btnCalendario.addEventListener("click", () => {
   iframe.src = "/agenda";
+});
+
+fetch("/adm/dados")
+.then(res => res.json())
+.then(adm =>{
+  admNome.innerText = adm.nome;
+})
+.catch(()=>{
+  admNome.innerText = "ERRO";
 });
