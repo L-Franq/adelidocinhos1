@@ -13,13 +13,11 @@ require("./databases/init");
 const mainRoute = require("./routes/main");
 const admRoute = require("./routes/admRoutes");
 const fullCalendar = require("./routes/fullCalendarRoute");
-const userStuff = require("./routes/userRoutes");
+const userAuthRoutes = require("./routes/userRoutes");
 
 app.use(mainRoute);
 app.use("/adm", admRoute);
 app.use("/agenda", fullCalendar);
-app.use("/user", userStuff);
-
-
+app.use("/user", userAuthRoutes);
 
 app.listen(PORT, () => console.log(`App running in ${PORT} port`));
