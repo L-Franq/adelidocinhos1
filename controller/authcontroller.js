@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const userModel = require("../models/userModel");
-const findAdmByEmail = require("../models/admModel");
-const findUserByemail = require("../models/userModel");
+const { findAdmByEmail } = require("../models/admModel");
 
 async function cadastroUser(req, res) {
   const { cadastrarNome, cadastrarEmail, cadastrarTelefone, cadastrarSenha } =
@@ -16,39 +15,45 @@ async function cadastroUser(req, res) {
     cadastrarNome,
     cadastrarEmail,
     cadastrarTelefone,
-    senhaAsh
+    senhaAsh,
   );
 
   res.json({ sucesso: true });
 }
-
 async function login(req, res) {
   const { loginEmail, loginPassword } = req.body;
 
   let user = await findAdmByEmail(loginEmail);
+
   let tipo = "Adm";
 
-  if (!user) {
-    user = await findUserByemail(loginEmail);
+  if (user) {
+    if (loginPassword !== user.senha) {
+      return res.status(401).json({ erro: "Senha incorreta" });
+    }
+  } else {
+    user = await userModel.buscarUserPorEmail(loginEmail);
     tipo = "User";
+
+    if (!user) {
+      return res.status(401).json({ erro: "Usuário não encontrado" });
+    }
+
+    const senhaOk = await bcrypt.compare(loginPassword, user.senha);
+    if (!senhaOk) {
+      return res.status(401).json({ erro: "Senha incorreta" });
+    }
   }
 
-  if (!user) return res.status(401).send("Usuario Nao encontrado.");
-
-  const senhaOk = await bcrypt.compare(loginPassword, user.loginEmail);
-
-  if (!senhaOk) return res.status(401).send("Senha Incorreta.");
-
   req.session.user = {
-    id: id.user,
+    id: user.id,
     tipo,
   };
 
-  if ((tipo === "ADM")) {
-    res.redirect("/adm/dashboard");
-  } else {
-    res.redirect("/user/userDashboard");
-  }
+  return res.json({
+    sucesso: true,
+    redirect: tipo === "Adm" ? "/adm/admDashboard" : "/user/userDashboard",
+  });
 }
 
 module.exports = { cadastroUser, login };

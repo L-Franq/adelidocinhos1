@@ -27,7 +27,7 @@ aindaNaotenho.addEventListener("click", (event) => {
 formCadastro.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const res = await fetch("/user", {
+  const res = await fetch("/user/cadastro", {
     method: "POST",
     body: new URLSearchParams(new FormData(e.target)),
   });
@@ -37,7 +37,7 @@ formCadastro.addEventListener("submit", async (e) => {
   if (data.sucesso) {
     alert("Usuario Cadastrado!");
 
-    location.href = "/user/login";
+    location.href = "/user/cadastrar-logar";
 
     if (formLogin && titulo) {
       formCadastro.classList.add("hidden");
@@ -47,4 +47,23 @@ formCadastro.addEventListener("submit", async (e) => {
       titulo.innerText = "Login";
     }
   } else alert(data.erro);
+});
+
+formLogin.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const res = await fetch("/user/login", {
+    method: "POST",
+    body: new URLSearchParams(new FormData(e.target)),
+  });
+
+  const data = await res.json();
+
+  if (data.sucesso) {
+    alert("going...");
+    // Redireciona dependendo do tipo de usuário
+    location.href = data.redirect;
+  } else {
+    alert(data.erro);
+  }
 });
