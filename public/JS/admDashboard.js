@@ -20,11 +20,13 @@ btnCalendario.addEventListener("click", () => {
   iframe.src = "/agenda";
 });
 
-fetch("/adm/dados")
-.then(res => res.json())
-.then(adm =>{
-  admNome.innerText = adm.nome;
+fetch("/adm/dados", {
+  credentials: "include",
 })
-.catch(()=>{
-  admNome.innerText = "ERRO";
-});
+  .then((res) => res.json())
+  .then((adm) => {
+    admNome.innerText = adm.nome;
+  })
+  .catch(() => {
+    admNome.innerText = "ERRO";
+  });

@@ -19,7 +19,7 @@ router.get("/cadastrar-logar", (req, res) => {
 
 router.post("/login", auth.login);
 
-router.get("/userDados", userController.getDadosUser);
+router.get("/userDados", userMiddleware, userController.getDadosUser);
 
 router.post("/cadastro", auth.cadastroUser);
 

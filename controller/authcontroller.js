@@ -20,6 +20,7 @@ async function cadastroUser(req, res) {
 
   res.json({ sucesso: true });
 }
+
 async function login(req, res) {
   const { loginEmail, loginPassword } = req.body;
 
@@ -46,9 +47,11 @@ async function login(req, res) {
   }
 
   req.session.user = {
-    id: user.id,
+    id: user.idAdm || user.idUsuario,
     tipo,
   };
+
+  console.log(req.session.user);
 
   return res.json({
     sucesso: true,
