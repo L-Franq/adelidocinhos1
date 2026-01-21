@@ -128,7 +128,7 @@ p {
   letter-spacing: 5px;
   font-size: 35px;
 }
-.cadastar {
+.cadastrar {
   background-color: #f2aee0;
   text-align: center;
   border-radius: 8px;
@@ -137,7 +137,7 @@ p {
   margin-bottom: 6px;
   margin-left: 32px;
 }
-.cadastar:hover {
+.cadastrar:hover {
   background-color: #fc80db;
   transition: background-color 0.3s ease-in-out;
   transform: scale(1.08);

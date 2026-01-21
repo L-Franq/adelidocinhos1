@@ -107,6 +107,15 @@ main .carregamentos {
   width: 98px;
   border: 3px solid #f2aee0;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+#profilePic:hover {
+  opacity: 0.8;
+}
+
+.hidden {
+  display: none;
 }
 
 .adm .accoes {

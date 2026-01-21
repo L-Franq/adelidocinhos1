@@ -1,48 +1,57 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela do Úsuario</title>
-    <link rel="stylesheet" href="../CSS/loginCadastro.css">
-</head>
-<body>
-     <header>
-    <h2>Adelidocinhos</h2>
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Adelidocinhos - Dashboard</title>
+    <link rel="stylesheet" href="../CSS/userDashboard.css" />
+    <!-- SweetAlert2 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
 
-    <span id="userName"></span>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="logo">
+        <h2>Adelidocinhos</h2>
+      </div>
+
+      <div class="user-info">
+        <span>Olá,</span>
+        <span id="userName">Usuário</span>
+      </div>
     </header>
 
-   
-        <main class="dashboard">
+    <main class="dashboard">
+      <div id="encomendar" class="card">
+        <h3>Fazer Encomenda</h3>
+        <p>Personalize seu doce</p>
+      </div>
 
-            <div class="card">
-                <h3>Fazer Encomenda</h3>
-                <p>Personalize seu doce</p>
-            </div>
+      <div  id="comprar" class="card">
+        <h3>Comprar</h3>
+        <p>Entrega rápida</p>
+      </div>
 
-            <div class="card">
-                <h3>Comprar </h3>
-                <p>Entrega Rápida</p>
-            </div>
+      <div  id="agendar" class="card">
+        <h3>Agenda</h3>
+        <p>Escolher data e hora</p>
+      </div>
 
-            <div class="card">
-                <h3>Agenda</h3>
-                <p>Escolher  data e hora</p>
-            </div>
+      <div id="Pedidos" pclass="card">
+        <h3>Meus Pedidos</h3>
+        <p>Acompanhe seu pedido</p>
+      </div>
 
-            <div class="card">
-                <h3>Meus Pedidos </h3>
-                <p>Acompanhe o seu pedido</p>
-            </div>
+      <div  id="suporte" class="card">
+        <h3>Suporte</h3>
+        <p>Fale conosco</p>
+      </div>
+    </main>
 
-            <div class="card">
-                <h3>Suporte</h3>
-                <p>Fale conosco</p>
-            </div>
-        </main>
-    </header>
-    
     <script src="../JS/userDashboard.js"></script>
-</body>
+  </body>
 </html>

@@ -1,4 +1,5 @@
 const userName = document.getElementById("userName");
+const btnAgendar = document.getElementById("agendar");
 
 fetch("/user/userDados", {
   credentials: "include",
@@ -10,3 +11,6 @@ fetch("/user/userDados", {
   .catch(() => {
     userName.innerText = "ERRO";
   });
+
+btnAgendar.addEventListener("click", ()=>{                   
+});

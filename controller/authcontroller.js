@@ -51,8 +51,6 @@ async function login(req, res) {
     tipo,
   };
 
-  console.log(req.session.user);
-
   return res.json({
     sucesso: true,
     redirect: tipo === "Adm" ? "/adm/admDashboard" : "/user/userDashboard",
