@@ -80,3 +80,13 @@ body {
   transform: translateY(-5px);
   background-color: #1b3559;
 }
+
+.carregamentos {
+  flex: 1.2;
+  border: 3px double #f2aee0;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background-color: #011826;
+  margin: 9px;
+  height: 375px;
+}

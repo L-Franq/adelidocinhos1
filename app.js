@@ -23,6 +23,7 @@ const mainRoute = require("./routes/main");
 const admRoute = require("./routes/admRoutes");
 const fullCalendar = require("./routes/fullCalendarRoute");
 const userAuthRoutes = require("./routes/userRoutes");
+const marcacaoRoute = require("./routes/marcacaoRoute");
 
 app.use(mainRoute);
 app.use("/adm", admRoute);

@@ -1,0 +1,6 @@
+##Alertas personalizados
+<!-- SweetAlert2 CSS -->
+"https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+
+<!-- SweetAlert2 JS -->
+"https://cdn.jsdelivr.net/npm/sweetalert2@11">

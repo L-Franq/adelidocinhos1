@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
         font-family: Arial, sans-serif;
       }
       #calendar {
-        max-width: 900px;
+        max-width: 100%;
         margin: 40px auto;
         color: #fc80db;
       }
@@ -92,21 +92,21 @@
           <input type="hidden" id="diaSelecionado" />
 
           <label>Turno</label>
-          <select id="turno" required>
-            <option disabled selected  value="">Selecione um turno</option>
+          <select name="turno" id="turno" required>
+            <option disabled selected value="">Selecione um turno</option>
             <option value="manha">Manhã</option>
             <option value="tarde">Tarde</option>
             <option value="noite">Noite</option>
           </select>
 
           <label>Hora</label>
-          <input type="time" id="hora" required />
+          <input name="hora" type="time" id="hora" required />
 
-           <label>Lugar</label>
-          <input type="text" id="lugar" required />
+          <label>Lugar</label>
+          <input name="lugar" type="text" id="lugar" required />
 
           <label>Descrição</label>
-          <textarea id="descricao" required></textarea>
+          <textarea name="descricao" id="descricao" required></textarea>
 
           <button type="submit">Confirmar</button>
         </form>

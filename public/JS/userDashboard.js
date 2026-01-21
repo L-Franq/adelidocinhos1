@@ -1,5 +1,6 @@
 const userName = document.getElementById("userName");
 const btnAgendar = document.getElementById("agendar");
+const iframe = document.getElementById("dashboardIframe");
 
 fetch("/user/userDados", {
   credentials: "include",
@@ -12,5 +13,6 @@ fetch("/user/userDados", {
     userName.innerText = "ERRO";
   });
 
-btnAgendar.addEventListener("click", ()=>{                   
+btnAgendar.addEventListener("click", ()=>{
+  iframe.src = "/agenda";                
 });

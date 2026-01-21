@@ -1,0 +1,30 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 10px;
+}
+
+.acoes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}

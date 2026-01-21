@@ -17,12 +17,25 @@ const tabelas = [
     telefone INTEGER UNIQUE NOT NULL,
     senha TEXT NOT NULL)`,
 
-  `CREATE TABLE IF NOT EXISTS marcacoes(
-    idMarc INTEGER PRIMARY KEY AUTOINCREMENT,
-    dia TEXT NOT NULL,
-    hora TEXT NOT NULL,
-    turno TEXT,
-    lugar TEXT )`,
+  ` CREATE TABLE IF NOT EXISTS marcacoes (
+     idMarc INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    idUsuario INTEGER, 
+    -- NULL quando for ação do ADM (bloqueio)
+
+    dia TEXT NOT NULL,          
+    turno TEXT NOT NULL,        
+    descricao TEXT,
+    lugar TEXT,
+    hora TEXT,
+
+    status TEXT NOT NULL DEFAULT 'ativo',
+    -- ativo | espera | bloqueado | cancelado
+
+    criadoEm DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+   FOREIGN KEY (idUsuario) REFERENCES usuarios (idUsuario)
+)`,
 
   `CREATE TABLE IF NOT EXISTS resumos(
     idResumo INTEGER PRIMARY KEY AUTOINCREMENT,
