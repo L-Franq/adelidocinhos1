@@ -98,6 +98,7 @@ const modalAdm = document.getElementById("modalAdm");
 const formMarcacaoAdm = document.getElementById("formMarcacaoAdm");
 let diaSelecionadoAdm = null;
 
+/*
 async function abrirModalAdm(dia) {
   diaSelecionadoAdm = dia;
   document.getElementById("admDia").innerText = dia;
@@ -150,6 +151,7 @@ function renderizarListaMarcacoes(marcacoes) {
   });
 }
 
+
 // ✅ Criar nova marcação
 formMarcacaoAdm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -196,7 +198,7 @@ function abrirModalEditarMarcacao(marc) {
   document.getElementById("turnoAdm").value = marc.turno;
   document.getElementById("descricaoAdm").value = marc.descricao;
 }
-
+*/
 //Modal do Usuario
 function abrirModal(data) {
   inputDia.value = data;
@@ -205,7 +207,7 @@ function abrirModal(data) {
 
 fecharModal.onclick = () => {
   modal.style.display = "none";
-  form.reset();
+  formMarcacao.reset();
 };
 
 window.onclick = (e) => {
@@ -221,10 +223,8 @@ formMarcacao.onsubmit = async function (event) {
   const data = inputDia.value;
 
   if (!data) {
-    setTimeout(() => {
-      Swal.fire(data.erro, "Data inválida", "error");
-      return;
-    }, 1000 / 2);
+    setTimeout(Swal.fire(data.erro, "Data inválida", "error"), 6000);
+    return;
   }
 
   // 🔒 GARANTIA ABSOLUTA
@@ -251,7 +251,7 @@ formMarcacao.onsubmit = async function (event) {
   try {
     const res = await fetch("/user/marcar", {
       method: "POST",
-      headers: { "Content-Type": "Applicaton/json" },
+      headers: { "Content-Type": "Application/json" },
       body: JSON.stringify({
         dia: data,
         turno,
@@ -263,16 +263,16 @@ formMarcacao.onsubmit = async function (event) {
 
     const json = await res.json();
 
-    if(!json.sucesso){
-       Swal.fire("Desculpa", "Erro interno", "error");
-       return;
+    if (!json.sucesso) {
+      Swal.fire("Desculpa", "Erro interno", "error");
+      return;
     }
   } catch (err) {
-     Swal.fire("Conexao", "Erro de conexao, tente mais tarde.", "warning");
-     return;
+    Swal.fire("Conexao", "Erro de conexao, tente mais tarde.", "warning");
+    return;
   }
 
   atualizarVisual(calendar, data, dia, turno);
   modal.style.display = "none";
-  form.reset();
+  formMarcacao.reset();
 };

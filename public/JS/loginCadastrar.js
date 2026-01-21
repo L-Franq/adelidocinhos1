@@ -35,7 +35,7 @@ formCadastro.addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (data.sucesso) {
-    alert("Usuario Cadastrado!");
+    Swal.fire("Sucesso", "Data inválida", "success");
 
     location.href = "/user/cadastrar-logar";
 
@@ -46,7 +46,7 @@ formCadastro.addEventListener("submit", async (e) => {
 
       titulo.innerText = "Login";
     }
-  } else alert(data.erro);
+  } else Swal.fire(data.erro, "Data inválida", "error");
 });
 
 formLogin.addEventListener("submit", async (e) => {
@@ -60,10 +60,10 @@ formLogin.addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (data.sucesso) {
-    alert("going...");
+    setTimeout(Swal.fire("Processando", "Loading...", "success"), 8000);
     // Redireciona dependendo do tipo de usuário
     location.href = data.redirect;
   } else {
-    alert(data.erro);
+    Swal.fire(data.erro, "Falha", "error");
   }
 });
