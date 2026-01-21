@@ -92,7 +92,7 @@ function atualizarVisual(calendar, data, dia) {
 
 const modal = document.getElementById("modalMarcacao");
 const fecharModal = document.getElementById("fecharModal");
-const form = document.getElementById("formMarcacao");
+const formMarcacao = document.getElementById("formMarcacao");
 const inputDia = document.getElementById("diaSelecionado");
 const modalAdm = document.getElementById("modalAdm");
 const formMarcacaoAdm = document.getElementById("formMarcacaoAdm");
@@ -215,14 +215,16 @@ window.onclick = (e) => {
   }
 };
 
-form.onsubmit = function (event) {
+formMarcacao.onsubmit = async function (event) {
   event.preventDefault();
 
   const data = inputDia.value;
 
   if (!data) {
-    alert("Data inválida");
-    return;
+    setTimeout(() => {
+      Swal.fire(data.erro, "Data inválida", "error");
+      return;
+    }, 1000 / 2);
   }
 
   // 🔒 GARANTIA ABSOLUTA
@@ -233,6 +235,7 @@ form.onsubmit = function (event) {
   const turno = document.getElementById("turno").value;
   const descricao = document.getElementById("descricao").value;
   const lugar = document.getElementById("lugar").value;
+  const hora = document.getElementById("hora").value;
 
   const dia = agenda[data];
 
@@ -242,11 +245,34 @@ form.onsubmit = function (event) {
     dia.espera.push({ descricao }, { lugar });
   } else {
     dia.bloqueado = true;
-    alert("Dia lotado");
+    Swal.fire("Sem Vagas", "Dia lotado", "warning");
+  }
+
+  try {
+    const res = await fetch("/user/marcar", {
+      method: "POST",
+      headers: { "Content-Type": "Applicaton/json" },
+      body: JSON.stringify({
+        dia: data,
+        turno,
+        hora,
+        descricao,
+        lugar,
+      }),
+    });
+
+    const json = await res.json();
+
+    if(!json.sucesso){
+       Swal.fire("Desculpa", "Erro interno", "error");
+       return;
+    }
+  } catch (err) {
+     Swal.fire("Conexao", "Erro de conexao, tente mais tarde.", "warning");
+     return;
   }
 
   atualizarVisual(calendar, data, dia, turno);
   modal.style.display = "none";
   form.reset();
-  console.log(agenda);
 };

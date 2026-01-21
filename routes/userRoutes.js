@@ -24,6 +24,6 @@ router.get("/userDados", userMiddleware, userController.getDadosUser);
 
 router.post("/cadastro", auth.cadastroUser);
 
-router.post("/marcar", userMiddleware, marcacaoController.criarMarcacao);
+router.post("/marcar", userMiddleware, marcacaoController.criarMarcacaoUser);
 
 module.exports = router;

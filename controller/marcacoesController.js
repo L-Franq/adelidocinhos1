@@ -1,12 +1,12 @@
 const marcacoesModel = require("../models/marcacoesModel");
 
-async function criarMarcacao(req, res) {
+async function criarMarcacaoUser(req, res) {
   try {
     const { dia, turno, hora, descricao, lugar } = req.body;
 
     const idUsuario = req.session.user.id;
 
-    await marcacoesModel.criarMarcacao({
+    await marcacoesModel.criarMarcacaoUser({
       idUsuario,
       dia,
       turno,
@@ -22,4 +22,4 @@ async function criarMarcacao(req, res) {
   }
 }
 
-module.exports = { criarMarcacao };
+module.exports = { criarMarcacaoUser };
