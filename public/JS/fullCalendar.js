@@ -98,7 +98,6 @@ const modalAdm = document.getElementById("modalAdm");
 const formMarcacaoAdm = document.getElementById("formMarcacaoAdm");
 let diaSelecionadoAdm = null;
 
-/*
 async function abrirModalAdm(dia) {
   diaSelecionadoAdm = dia;
   document.getElementById("admDia").innerText = dia;
@@ -112,6 +111,7 @@ function fecharModalAdm() {
   modalAdm.classList.add("hidden");
   formMarcacaoAdm.reset();
 }
+
 
 // ✅ Fetch das marcações do dia
 async function carregarMarcacoesAdm(dia) {
@@ -151,8 +151,6 @@ function renderizarListaMarcacoes(marcacoes) {
   });
 }
 
-
-// ✅ Criar nova marcação
 formMarcacaoAdm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -180,6 +178,7 @@ formMarcacaoAdm.addEventListener("submit", async (e) => {
   }
 });
 
+/*
 async function excluirMarcacao(idMarc) {
   if (!confirm("Deseja realmente excluir esta marcação?")) return;
 
@@ -199,6 +198,7 @@ function abrirModalEditarMarcacao(marc) {
   document.getElementById("descricaoAdm").value = marc.descricao;
 }
 */
+
 //Modal do Usuario
 function abrirModal(data) {
   inputDia.value = data;

@@ -1,4 +1,5 @@
 const admModel = require("../models/admModel");
+const marcacaoModel = require("../models/marcacoesModel");
 
 async function getDadosAdm(req, res) {
   try {
@@ -21,4 +22,4 @@ async function getDadosAdm(req, res) {
   }
 }
 
-module.exports = { getDadosAdm };
+module.exports = { getDadosAdm};

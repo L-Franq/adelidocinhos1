@@ -1,6 +1,6 @@
 const db = require("../databases/db");
 
-function criarMarcacaoUser({idUsuario, dia, turno, hora, descricao, lugar}) {
+function criarMarcacaoUser({ idUsuario, dia, turno, hora, descricao, lugar }) {
   return new Promise((resolve, reject) => {
     db.run(
       `INSERT INTO marcacoes (idUsuario, dia, turno, hora, descricao, lugar) VALUES(?, ?, ?, ?, ?, ?)`,
@@ -13,4 +13,22 @@ function criarMarcacaoUser({idUsuario, dia, turno, hora, descricao, lugar}) {
   });
 }
 
-module.exports = { criarMarcacaoUser };
+function buscarMarcacao(dia) {
+  return new Promise((resolve, reject) => {
+    db.run(`SELECT * FROM marcacoes WHERE dia = ?`, [dia], (err, row) => {
+      if (err) reject(err);
+      else resolve(row);
+    });
+  });
+}
+
+function apagarMarcacao(id) {
+  return new Promise((reject, resolve) => {
+    db.run(`DELETE * FROM marcacoes WHERE idMarc = ?`, [id], (err, row) => {
+      if (err) reject(err);
+      else resolve(row);
+    });
+  });
+}
+
+module.exports = { criarMarcacaoUser, buscarMarcacao, apagarMarcacao };
