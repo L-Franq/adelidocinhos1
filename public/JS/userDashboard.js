@@ -13,6 +13,7 @@ fetch("/user/userDados", {
     userName.innerText = "ERRO";
   });
 
-btnAgendar.addEventListener("click", ()=>{
-  iframe.src = "/agenda";                
+btnAgendar.addEventListener("click", () => {
+  iframe.style.maxWidth = "100%";
+  iframe.src = "/agenda";
 });

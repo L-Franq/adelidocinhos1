@@ -6,7 +6,7 @@ const userMiddleware = require("../middleware/isUser");
 const userController = require("../controller/userController");
 const marcacaoController = require("../controller/marcacoesController");
 
-router.get("/userDashboard", userMiddleware, (req, res) => {
+router.get("/*", userMiddleware, (req, res) => {
   res.sendFile(
     path.join(__dirname, "..", "public", "HTML", "userDashboard.html"),
   );

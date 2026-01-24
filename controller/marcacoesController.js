@@ -24,7 +24,7 @@ async function criarMarcacaoUser(req, res) {
 
 async function buscarMarcacao(req, res) {
   try {
-    const dia = req.params;
+    const { dia } = req.query;
 
     if (!dia) return res.status(401).json({ erro: "Sem Registro!" });
 
@@ -41,7 +41,7 @@ async function buscarMarcacao(req, res) {
 
 async function apagarMarcacao(req, res) {
   try {
-    const id = req.params;
+    const { id } = req.query;
 
     if (!id) {
       return res.json(401).json({ erro: "Sem registro!" });

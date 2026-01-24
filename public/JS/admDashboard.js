@@ -19,6 +19,7 @@ setInterval(() => {
 containerHorario.insertBefore(hora, hoje);
 
 btnCalendario.addEventListener("click", () => {
+  iframe.style.maxWidth = "100%";
   iframe.src = "/agenda";
 });
 

@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const session = require("express-session");
 const PORT = process.env.PORT || 8080;
+const HOST = "0.0.0.0";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -29,4 +30,4 @@ app.use("/adm", admRoute);
 app.use("/agenda", fullCalendar);
 app.use("/user", userAuthRoutes);
 
-app.listen(PORT, () => console.log(`App running in ${PORT} port`));
+app.listen(PORT, HOST, () => console.log(`App running in ${PORT} port`));

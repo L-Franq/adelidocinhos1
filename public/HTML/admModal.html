@@ -1,44 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../CSS/admModal.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
-    />
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/admModal.css">
     <title>Document</title>
-  </head>
-  <body>
-    <div id="modalAdm" class="hidden">
-      <h3 id="admDia"></h3>
-      <ul id="listaMarcacoesAdm"></ul>
+</head>
+<body data-role="adm">
+      <div id="modalAdm" class="hidden">
+        <h3 id="admDia"></h3>
+        <ul id="listaMarcacoesAdm"></ul>
 
-      <h4>Adicionar nova marcação</h4>
-      <form id="formMarcacaoAdm">
-        <input
-          type="time"
-          id="horaAdm"
-          placeholder="Hora (ex: 14:00)"
-          required
-        />
-        <select id="turnoAdm" required>
-          <option value="">Selecione turno</option>
-          <option value="manha">Manhã</option>
-          <option value="tarde">Tarde</option>
-          <option value="noite">Noite</option>
-        </select>
-        <input type="text" id="descricaoAdm" placeholder="Descrição" />
-        <button type="submit">Salvar</button>
-      </form>
+        <h4>Adicionar nova marcação</h4>
+        <form id="formMarcacaoAdm">
+          <input
+            type="time"
+            id="horaAdm"
+            name="hora"
+            placeholder="Hora (ex: 14:00)"
+            required
+          />
+          <select name="diaSelecionadoAdm" id="turnoAdm" required>
+            <option disabled>Selecione turno</option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="noite">Noite</option>
+          </select>
+          <input name="descricao" type="text" id="descricaoAdm" placeholder="Descrição" />
+          <button type="submit">Salvar</button>
+        </form>
 
-      <button onclick="fecharModalAdm()">Fechar</button>
+        <button onclick="fecharModalAdm()">Fechar</button>
+      </div>
     </div>
 
-    <script src="../JS/fullCalendar.js"></script>
-  </body>
+   <script src="../JS/userCalendar.js"></script>
+</body>
 </html>

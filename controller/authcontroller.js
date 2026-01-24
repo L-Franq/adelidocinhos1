@@ -53,7 +53,7 @@ async function login(req, res) {
 
   return res.json({
     sucesso: true,
-    redirect: tipo === "Adm" ? "/adm/admDashboard" : "/user/userDashboard",
+    redirect: tipo === "Adm" ? "/adm/*" : "/user/*",
   });
 }
 

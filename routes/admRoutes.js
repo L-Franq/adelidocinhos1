@@ -3,10 +3,10 @@ const router = express.Router();
 const admController = require("../controller/admController");
 const admMiddleware = require("../middleware/isAdm");
 const authcontroller = require("../controller/authcontroller");
-const marcacoesController = require("../controller/marcacoesController");
 const path = require("path");
+const marcacoesController = require("../controller/marcacoesController");
 
-router.get("/admDashboard", (req, res) => {
+router.get("/*", (req, res) => {
   res.sendFile(
     path.join(__dirname, "..", "public", "HTML", "admDashboard.html"),
   );

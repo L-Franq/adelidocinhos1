@@ -15,7 +15,7 @@ function criarMarcacaoUser({ idUsuario, dia, turno, hora, descricao, lugar }) {
 
 function buscarMarcacao(dia) {
   return new Promise((resolve, reject) => {
-    db.run(`SELECT * FROM marcacoes WHERE dia = ?`, [dia], (err, row) => {
+    db.get(`SELECT * FROM marcacoes WHERE dia = ?`, [dia], (err, row) => {
       if (err) reject(err);
       else resolve(row);
     });
@@ -23,10 +23,10 @@ function buscarMarcacao(dia) {
 }
 
 function apagarMarcacao(id) {
-  return new Promise((reject, resolve) => {
-    db.run(`DELETE * FROM marcacoes WHERE idMarc = ?`, [id], (err, row) => {
+  return new Promise((resolve, reject) => {
+    db.run(`DELETE FROM marcacoes WHERE idMarc = ?`, [id], function (err) {
       if (err) reject(err);
-      else resolve(row);
+      else resolve(this.changes);
     });
   });
 }
