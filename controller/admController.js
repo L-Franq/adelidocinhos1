@@ -1,5 +1,5 @@
 const admModel = require("../models/admModel");
-const marcacaoModel = require("../models/marcacoesModel");
+const userModel = require("../models/userModel");
 
 async function getDadosAdm(req, res) {
   try {
@@ -22,4 +22,20 @@ async function getDadosAdm(req, res) {
   }
 }
 
-module.exports = { getDadosAdm};
+async function getDadosUser(req, res) {
+  try{
+
+    const iduser = req.session.user?.id;
+    
+    if (!idAdm) {
+      return res.status(401).json({ erro: "ADM não logado" });
+    }
+
+    const user = await userModel.buscarUser(id, nome);
+  }
+  catch(err){
+
+  }
+}
+
+module.exports = { getDadosAdm, getDadosUser};

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+    />
+    <link rel="stylesheet" href="../CSS/admModal.css" />
+    <link rel="stylesheet" href="../CSS/userModal.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #calendar {
+        max-width: 100%;
+        margin: 40px auto;
+        color: #fc80db;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="calendar"></div>
+
+    <!-- MODAL USER -->
+    <div id="modalMarcacao" class="modal hidden">
+      <div class="modal-content">
+        <span id="fecharModal">&times;</span>
+
+        <h3>Marcar Atividade</h3>
+
+        <form id="formMarcacao">
+          <input type="hidden" id="diaSelecionado" />
+
+          <label for="turno">Turno</label>
+          <select name="turno" id="turno" required>
+            <option disabled selected value="">Selecione um turno</option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="noite">Noite</option>
+          </select>
+
+          <label for="hora">Hora</label>
+          <input name="hora" type="time" id="hora" required />
+
+          <label for="lugar">Lugar</label>
+          <input name="lugar" type="text" id="lugar" required />
+
+          <label for="descricao">Descrição</label>
+          <textarea name="descricao" id="descricao" required></textarea>
+
+          <button type="submit">Confirmar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL ADM -->
+    <div id="ModalAdm" class="Modal hidden">
+      <div class="Modal-content">
+        <h3 id="admDia"></h3>
+        <ul id="listaMarcacoesAdm"></ul>
+
+        <h4>Adicionar nova marcação</h4>
+        <form id="formMarcacaoAdm">
+          <input
+            type="time"
+            id="horaAdm"
+            name="hora"
+            placeholder="Hora (ex: 14:00)"
+            required
+          />
+          <select name="diaSelecionadoAdm" id="turnoAdm" required>
+            <option disabled>Selecione turno</option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="noite">Noite</option>
+          </select>
+          <input
+            name="descricao"
+            type="text"
+            id="descricaoAdm"
+            placeholder="Descrição"
+          />
+          <button type="submit">Salvar</button>
+        </form>
+
+        <button id="fecharModalAdm">Fechar</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script src="../JS/fullCalendar.js"></script>
+  </body>
+</html>

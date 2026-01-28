@@ -35,4 +35,17 @@ function buscarUserPorEmail(email) {
   });
 }
 
-module.exports = { criarUser, buscarUserPorEmail, buscarNomeUserPorId };
+function buscarUser(id, nome) {
+  return new Promise((resolve, reject) => {
+    db.get(
+      `SELECT idUsuario, nome FROM usuarios  WHERE idUsuario = ?`,
+      [id, nome],
+      (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      },
+    );
+  });
+}
+
+module.exports = { criarUser, buscarUserPorEmail, buscarNomeUserPorId, buscarUser };

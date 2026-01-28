@@ -1,11 +1,8 @@
+/*Modal user*/
 body {
   font-family: Arial, sans-serif;
 }
-#calendar {
-  max-width: 100%;
-  margin: 40px auto;
-  color: #fc80db;
-}
+
 .modal {
   position: fixed;
   top: 0;

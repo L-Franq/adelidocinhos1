@@ -33,7 +33,7 @@ async function buscarMarcacao(req, res) {
     if (!marcacao)
       return res.status(404).json({ erro: "Registro nao Encontrado!" });
 
-    res.json(marcacao);
+    res.json(marcacao || []);
   } catch (err) {
     res.status(500).json({ erro: "Falha ao buscar marcacao." });
   }

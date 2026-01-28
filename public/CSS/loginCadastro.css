@@ -46,6 +46,11 @@ p {
 .hidden {
   display: none;
 }
+.erro{
+  color: red;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
 
 header {
   background: #132640;

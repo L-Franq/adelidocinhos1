@@ -10,9 +10,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
     />
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <div class="container">
@@ -30,14 +27,15 @@
           name="cadastrarEmail"
           id="cadastrarEmail"
           type="e-mail"
-          placeholder="e-mail"
+          placeholder="exemplo@gmail.com"
         />
 
         <input
           name="cadastrarTelefone"
           id="cadastrarTelefone"
           type="text"
-          placeholder="Telefone"
+          placeholder="+244 xxx xxx xxx"
+          maxlength="9"
         />
 
         <input
@@ -46,6 +44,8 @@
           type="Password"
           placeholder="Senha"
         />
+
+        <p id="erro" class="hidden"></p>
 
         <button type="submit" name="btnCadastrar" id="btnCadastrar">
           Cadastrar
@@ -59,7 +59,7 @@
           name="loginEmail"
           id="loginEmail"
           type="e-mail"
-          placeholder="e-mail"
+          placeholder="exemplo@gmail.com"
         />
 
         <input
@@ -69,13 +69,17 @@
           placeholder="Senha"
         />
 
+        <p id="erroL" class="hidden"></p>
+
         <button type="submit" name="logar" id="btnLogin">Entrar</button>
 
         <p id="aindaNaotenho">Cria Conta</p>
       </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="../JS/loginCadastrar.js"></script>
   </body>
 </html>

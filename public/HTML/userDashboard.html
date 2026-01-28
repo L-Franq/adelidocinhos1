@@ -2,7 +2,7 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adelidocinhos - Dashboard</title>
     <link rel="stylesheet" href="../CSS/userDashboard.css" />
     <!-- SweetAlert2 CSS -->
@@ -10,9 +10,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
     />
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <header class="top-header">
@@ -21,20 +18,19 @@
       </div>
 
       <div class="user-info">
-        <span>Olá,</span>
-        <span id="userName">Usuário</span>
+        <span id="userName"></span>
       </div>
     </header>
 
     <main class="dashboard">
       <div id="encomendar" class="card">
         <h3>Fazer Encomenda</h3>
-        <p>Personalize seu doce</p>
+        <p>Entrega rápida</p>
       </div>
 
-      <div id="comprar" class="card">
+      <div id="comprar" class="card indispo">
         <h3>Comprar</h3>
-        <p>Entrega rápida</p>
+        <p>Personalize seu doce</p>
       </div>
 
       <div id="agendar" class="card">
@@ -42,12 +38,12 @@
         <p>Escolher data e hora</p>
       </div>
 
-      <div id="Pedidos" class="card">
+      <div id="Pedidos" class="card indispo">
         <h3>Meus Pedidos</h3>
         <p>Acompanhe seu pedido</p>
       </div>
 
-      <div id="suporte" class="card">
+      <div id="suporte" class="card indispo">
         <h3>Suporte</h3>
         <p>Fale connosco</p>
       </div>
@@ -57,5 +53,7 @@
     </section>
 
     <script src="../JS/userDashboard.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

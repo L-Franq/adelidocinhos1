@@ -4,7 +4,7 @@ const path = require("path");
 
 router.get("/", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "..", "public", "HTML", "userModal.html")
+    path.join(__dirname, "..", "public", "HTML", "calendario.html")
   );
 });
 

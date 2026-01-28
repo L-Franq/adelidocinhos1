@@ -1,24 +1,33 @@
-.modal {
+/*Modal adm*/
+.modal, .Modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+  display: flex; /* O flex será controlado pela classe hidden */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+#ModalAdm {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10000;
 }
 
-.modal.hidden {
-  display: none;
+
+.hidden {
+  display: none !important;
 }
 
-.modal-content {
+.Modal-content {
   background: #fff;
   padding: 20px;
   width: 320px;
   border-radius: 8px;
 }
 
-.modal-content label {
+.Modal-content label {
   display: block;
   margin-top: 10px;
 }

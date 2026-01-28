@@ -24,10 +24,12 @@ const mainRoute = require("./routes/main");
 const admRoute = require("./routes/admRoutes");
 const fullCalendar = require("./routes/fullCalendarRoute");
 const userAuthRoutes = require("./routes/userRoutes");
+const whoamiRoute = require("./routes/whoIS");
 
 app.use(mainRoute);
 app.use("/adm", admRoute);
 app.use("/agenda", fullCalendar);
 app.use("/user", userAuthRoutes);
+app.use(whoamiRoute);
 
 app.listen(PORT, HOST, () => console.log(`App running in ${PORT} port`));
