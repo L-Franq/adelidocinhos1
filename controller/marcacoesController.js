@@ -22,6 +22,24 @@ async function criarMarcacaoUser(req, res) {
   }
 }
 
+async function criarMarcacaoAdm(req, res) {
+  try {
+    const { dia, turno, hora, descricao } = req.body;
+
+    await marcacoesModel.criarMarcacaoAdm({
+      dia,
+      turno,
+      hora,
+      descricao,
+      status: "ativo",
+    });
+
+    res.json({ sucesso: true });
+  } catch (err) {
+    res.status(500).json({ erro: "Erro ao criar marcacao ADM!" });
+  }
+}
+
 async function buscarMarcacao(req, res) {
   try {
     const { dia } = req.query;
@@ -29,9 +47,6 @@ async function buscarMarcacao(req, res) {
     if (!dia) return res.status(401).json({ erro: "Sem Registro!" });
 
     const marcacao = await marcacoesModel.buscarMarcacao(dia);
-
-    if (!marcacao)
-      return res.status(404).json({ erro: "Registro nao Encontrado!" });
 
     res.json(marcacao || []);
   } catch (err) {
@@ -41,18 +56,47 @@ async function buscarMarcacao(req, res) {
 
 async function apagarMarcacao(req, res) {
   try {
-    const { id } = req.query;
+    const { id } = req.params;
 
     if (!id) {
-      return res.json(401).json({ erro: "Sem registro!" });
+      return res.status(401).json({ erro: "Sem registro!" });
     }
 
-    const marcacao = await marcacoesModel.apagarMarcacao(id);
+    const changes = await marcacoesModel.apagarMarcacao(id);
 
-    if (!marcacao) res.status(404).json({ erro: "Marcacao nao encontrada." });
+    if (changes === 0)
+      return res.status(404).json({ erro: "Marcacao nao encontrada." });
+
+    return res.json({ sucesso: true });
   } catch (err) {
-    res.status(500).json({ erro: "Falha ao buscar marcacao" });
+    res.status(500).json({ erro: "Falha a apagar marcacao" });
   }
 }
 
-module.exports = { criarMarcacaoUser, buscarMarcacao, apagarMarcacao };
+async function atualizarMarcacao(req, res) {
+  try {
+    const { id } = req.params;
+
+    const {hora, turno, descricao} = req.body;
+
+    if (!id) return res.status(401).json({ erro: "Sem Registro!" });
+
+    const changes = await marcacoesModel.atualizarMarcacao(id, hora, turno, descricao);
+
+    if (changes === 0)
+      return res.status(401).json({ erro: "Marcacao nao encontrada." });
+
+    return res.json({ sucesso: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: "Falha a atualizar marcacao" });
+  }
+}
+
+module.exports = {
+  criarMarcacaoUser,
+  criarMarcacaoAdm,
+  buscarMarcacao,
+  apagarMarcacao,
+  atualizarMarcacao,
+};

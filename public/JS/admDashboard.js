@@ -6,6 +6,7 @@ const iframe = document.getElementById("dashboardIframe");
 const admNome = document.getElementById("admName");
 const perfilPic = document.getElementById("perfilPic");
 const inputFoto = document.getElementById("inputFoto");
+const btnListaDeUsers = document.getElementById("lista");
 
 let agora = new Date();
 
@@ -22,6 +23,11 @@ btnCalendario.addEventListener("click", () => {
   iframe.style.maxWidth = "100%";
   iframe.src = "/agenda";
 });
+
+btnListaDeUsers.addEventListener("click", (e)=>{
+  iframe.style.maxWidth = "100%";
+  iframe.src = "/user/lista";
+})
 
 const fotoSalva = localStorage.getItem("fotoPerfilAdm");
 

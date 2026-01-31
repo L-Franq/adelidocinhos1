@@ -8,7 +8,7 @@ indispo.forEach((msg) => {
     e.preventDefault();
     setTimeout(
       Swal.fire("Lamentamos!", "Servico indisponivel no momento.", "info"),
-      1000 * 60,
+      1000 * 20,
     );
   });
 });

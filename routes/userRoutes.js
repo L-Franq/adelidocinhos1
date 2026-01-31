@@ -12,6 +12,12 @@ router.get("/", userMiddleware, (req, res) => {
   );
 });
 
+router.get("/lista", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "..", "public", "HTML", "listaDeUsuarios.html"),
+  );
+});
+
 router.get("/cadastrar-logar", (req, res) => {
   res.sendFile(
     path.join(__dirname, "..", "public", "HTML", "loginCadastrar.html"),
@@ -21,6 +27,8 @@ router.get("/cadastrar-logar", (req, res) => {
 router.post("/login", auth.login);
 
 router.get("/userDados", userMiddleware, userController.getDadosUser);
+
+router.get("/userNomeId", userMiddleware, userController.getNomeId);
 
 router.post("/cadastro", auth.cadastroUser);
 

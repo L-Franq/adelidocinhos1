@@ -48,4 +48,22 @@ function buscarUser(id, nome) {
   });
 }
 
-module.exports = { criarUser, buscarUserPorEmail, buscarNomeUserPorId, buscarUser };
+function buscarTudoUser() {
+  return new Promise((resolve, reject) => {
+    db.all(
+      `SELECT idUsuario, nome FROM usuarios`,[],
+      (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      },
+    );
+  });
+}
+
+module.exports = {
+  criarUser,
+  buscarUserPorEmail,
+  buscarNomeUserPorId,
+  buscarUser,
+  buscarTudoUser,
+};

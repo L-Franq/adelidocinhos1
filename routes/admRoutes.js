@@ -15,7 +15,16 @@ router.get("/", (req, res) => {
 router.post("/login", authcontroller.login);
 router.get("/dados", admMiddleware, admController.getDadosAdm);
 router.get("/marcacoes", admMiddleware, marcacoesController.buscarMarcacao);
-router.post("/marcacoes", admMiddleware, marcacoesController.criarMarcacaoUser);
-router.delete("/marcaoes", admMiddleware, marcacoesController.apagarMarcacao);
+router.post("/marcacoes", admMiddleware, marcacoesController.criarMarcacaoAdm);
+router.delete(
+  "/marcacoes/:id",
+  admMiddleware,
+  marcacoesController.apagarMarcacao,
+);
+router.put(
+  "/marcacoes/:id",
+  admMiddleware,
+  marcacoesController.atualizarMarcacao,
+);
 
 module.exports = router;

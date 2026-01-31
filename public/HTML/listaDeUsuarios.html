@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --primary-bg: #011826;
+        --secondary-bg: #132640;
+        --accent-pink: #fc80db;
+        --soft-pink: #f2aee0;
+        --white: #ffffff;
+      }
+
+      body {
+        background-color: var(--primary-bg);
+        color: var(--white);
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .main-wrapper {
+        width: 100%;
+        max-width: 900px;
+      }
+
+      /* Área do Botão */
+      .header-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(242, 174, 224, 0.1);
+      }
+
+      .btn-fetch {
+        background-color: var(--accent-pink);
+        color: var(--primary-bg);
+        border: none;
+        padding: 14px 28px;
+        border-radius: 6px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 0px #b55caf; /* Sombra sólida para profundidade */
+      }
+
+      .btn-fetch:hover {
+        background-color: var(--soft-pink);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(252, 128, 219, 0.4);
+      }
+
+      .btn-fetch:active {
+        transform: translateY(2px);
+        box-shadow: none;
+      }
+
+      /* Container da Tabela */
+      .data-display {
+        background-color: var(--secondary-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+
+      thead {
+        background-color: rgba(252, 128, 219, 0.05);
+      }
+
+      th {
+        padding: 18px 24px;
+        color: var(--soft-pink);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        border-bottom: 2px solid var(--primary-bg);
+      }
+
+      td {
+        padding: 16px 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      td img:hover {
+        cursor: pointer;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover td {
+        background-color: rgba(255, 255, 255, 0.03);
+        color: var(--white);
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--primary-bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--secondary-bg);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--soft-pink);
+      }
+    </style>
+    <title>Interface de Usuários</title>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="header-actions">
+        <h2 style="margin: 0; font-weight: 300">
+          Clientes do <b style="color: var(--accent-pink)">Sistema</b>
+        </h2>
+      </div>
+
+      <div class="data-display">
+        <table id="tabela">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Accao</th>
+            </tr>
+          </thead>
+          <tbody id="target-render">
+            <tr>
+              <td>1</td>
+              <td>Rui Py</td>
+              <td>
+                <img
+                  src="../IMG/icons/trash.png"
+                  alt="eliminar"
+                  title="Eliminar"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="../JS/listaDeUsuarios.js"></script>
+  </body>
+</html>

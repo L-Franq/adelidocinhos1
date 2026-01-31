@@ -16,6 +16,21 @@ async function getDadosUser(req, res) {
   }
 }
 
+async function getNomeId(req, res) {
+  try {
+    const user = await userModel.buscarTudoUser();
+
+    if (!user) {
+      return res.status(404).json({ erro: "User não encontrado" });
+    }
+
+    res.json(user || []);
+  } catch (error) {
+    res.status(500).json({ erro: "Erro ao buscar User" });
+  }
+}
+
 module.exports = {
   getDadosUser,
+  getNomeId,
 };
