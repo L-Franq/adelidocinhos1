@@ -27,7 +27,7 @@ btnCalendario.addEventListener("click", () => {
 btnListaDeUsers.addEventListener("click", (e)=>{
   iframe.style.maxWidth = "100%";
   iframe.src = "/user/lista";
-})
+});
 
 const fotoSalva = localStorage.getItem("fotoPerfilAdm");
 

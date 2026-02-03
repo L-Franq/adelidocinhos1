@@ -24,13 +24,14 @@ async function criarMarcacaoUser(req, res) {
 
 async function criarMarcacaoAdm(req, res) {
   try {
-    const { dia, turno, hora, descricao } = req.body;
+    const { dia, turno, hora, lugar, descricao } = req.body;
 
     await marcacoesModel.criarMarcacaoAdm({
       dia,
       turno,
       hora,
       descricao,
+      lugar,
       status: "ativo",
     });
 
@@ -77,11 +78,16 @@ async function atualizarMarcacao(req, res) {
   try {
     const { id } = req.params;
 
-    const {hora, turno, descricao} = req.body;
+    const { hora, turno, descricao } = req.body;
 
     if (!id) return res.status(401).json({ erro: "Sem Registro!" });
 
-    const changes = await marcacoesModel.atualizarMarcacao(id, hora, turno, descricao);
+    const changes = await marcacoesModel.atualizarMarcacao(
+      id,
+      hora,
+      turno,
+      descricao,
+    );
 
     if (changes === 0)
       return res.status(401).json({ erro: "Marcacao nao encontrada." });

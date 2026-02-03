@@ -126,6 +126,29 @@
       ::-webkit-scrollbar-thumb:hover {
         background: var(--soft-pink);
       }
+      /* Garante que o wrapper não deixe a tabela explodir o layout */
+      .data-display {
+        background-color: var(--secondary-bg);
+        border-radius: 12px;
+        overflow-x: auto; /* PERMITE SCROLL HORIZONTAL NA TABELA */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 400px; /* Garante que a tabela não fique espremida demais */
+      }
+
+      /* No mobile, ajustamos o header da lista */
+      @media (max-width: 600px) {
+        .header-actions {
+          flex-direction: column;
+          gap: 15px;
+          text-align: center;
+        }
+      }
     </style>
     <title>Interface de Usuários</title>
   </head>

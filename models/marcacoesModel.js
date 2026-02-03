@@ -13,6 +13,19 @@ function criarMarcacaoUser({ idUsuario, dia, turno, hora, descricao, lugar }) {
   });
 }
 
+function criarMarcacaoAdm({ dia, turno, hora, lugar, descricao }) {
+  return new Promise((resolve, reject) => {
+    db.run(
+      `INSERT INTO marcacoes (dia, turno, hora, lugar, descricao) VALUES(?, ?, ?, ?, ?)`,
+      [dia, turno, hora, lugar, descricao],
+      function (err) {
+        if (err) reject(err);
+        else resolve(this.lastID);
+      },
+    );
+  });
+}
+
 function buscarMarcacao(dia) {
   return new Promise((resolve, reject) => {
     db.all(`SELECT * FROM marcacoes WHERE dia = ?`, [dia], (err, row) => {
@@ -31,12 +44,23 @@ function apagarMarcacao(id) {
   });
 }
 
-function atualizarMarcacao(id, hora, turno, descricao){
-  return new Promise((resolve, reject)=>{
-    db.run(`UPDATE marcacoes SET hora = ?, turno = ?, descricao = ? WHERE idMarc = ?`,[hora, turno, descricao, id], function(err){
-      if(err) reject(err);
-      else resolve(this.changes);
-    })
+function atualizarMarcacao(id, hora, turno, descricao) {
+  return new Promise((resolve, reject) => {
+    db.run(
+      `UPDATE marcacoes SET hora = ?, turno = ?, descricao = ? WHERE idMarc = ?`,
+      [hora, turno, descricao, id],
+      function (err) {
+        if (err) reject(err);
+        else resolve(this.changes);
+      },
+    );
   });
 }
-module.exports = { criarMarcacaoUser, buscarMarcacao, apagarMarcacao, atualizarMarcacao};
+
+module.exports = {
+  criarMarcacaoUser,
+  buscarMarcacao,
+  apagarMarcacao,
+  atualizarMarcacao,
+  criarMarcacaoAdm,
+};

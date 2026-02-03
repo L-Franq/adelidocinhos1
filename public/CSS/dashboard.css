@@ -7,37 +7,39 @@
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
 }
-
 body {
-  background-color: rgba(0, 0, 0, 0.3);
-  max-height: 400px;
+  background-color: #011826;
+  min-height: 100vh;
+  overflow-x: hidden; /* Garante que nada "vaze" para os lados */
+  width: 100%;
 }
-
 main {
-  margin: 0 7px;
-  margin-bottom: 38px;
+  margin: 0 auto 38px auto;
+  width: calc(100% - 14px);
+  max-width: 1400px; 
   padding: 35px 25px;
   background-color: #132640;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
   display: flex;
-  gap: 6px;
-  height: 90%;
+  gap: 15px;
 }
-
+header,
+main {
+  width: 95%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  /* Garante que bordas e paddings não aumentem o tamanho do elemento */
+  box-sizing: border-box;
+}
 header {
-  margin: 35px 7px;
-  padding: 40px 25px;
-  background-color: #011826;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-  display: flex;
-  flex-flow: row wrap;
-  gap: 4px;
+  margin: 20px auto; /* Centraliza o header também */
+  width: calc(100% - 14px);
+  max-width: 1400px;
 }
 
 header .horario {
-  border: 3px double #f2aee0;
+  border: 3px solid #f2aee0;
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   flex: 1;
@@ -51,15 +53,18 @@ header .horario p {
 }
 
 header .botoes {
-  border: 3px double #f2aee0;
+  border: 3px solid #f2aee0;
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   flex: 1;
-  padding: 0 5px 0 64px;
+  padding: 10px; 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 header .botoes button {
-  padding: 10px;
+  padding: 18px;
   color: #132640;
   background-color: #fc80db;
   border: none;
@@ -82,18 +87,13 @@ main .adm {
   background-color: #011826;
 }
 
-main .carregamentos {
-  flex: 1.2;
-  border: 3px double #f2aee0;
-  border-radius: 5px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+.carregamentos {
+  flex: 1; 
   background-color: #011826;
-}
-
-.adm {
-  display: flex;
-  flex-flow: column;
-  height: 90%;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden; /* Corta qualquer vazamento interno */
+  border-radius: 5px;
 }
 
 .adm div {
@@ -138,7 +138,67 @@ main .carregamentos {
   cursor: pointer;
   font-weight: 700;
 }
-
+#dashboardIframe {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: none;
+}
 .adm div button:hover {
   transform: scale(1.02);
+}
+/* Media Query corrigida */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column; 
+    height: auto;
+    gap: 25px;
+  }
+
+  header {
+    flex-direction: column; 
+    gap: 15px;
+  }
+
+  .adm {
+    flex: none;
+    width: 100%;
+    padding-bottom: 20px;
+  }
+
+  .adm div button {
+    margin: 5px 10%;
+    padding: 12px;
+  }
+
+  .carregamentos {
+    min-height: 400px;
+  }
+  .adm .accoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .adm div button {
+    margin: 0;
+    width: 100%;
+    padding: 15px 5px;
+    font-size: 12px;
+  }
+  .btn-sair {
+    grid-column: span 2;
+  }
+}
+
+header {
+  flex-wrap: nowrap;
+}
+
+@media (min-width: 769px) {
+  * {
+    max-width: 100vw;
+  }
 }

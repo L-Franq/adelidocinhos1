@@ -4,90 +4,70 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 body {
   background-color: #011826;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
+
 .container {
   text-align: center;
-
-  width: 350px;
+  width: 100%;
+  max-width: 380px;
   background: #132640;
-  padding: 25px;
+  padding: 30px 25px;
   border-radius: 10px;
   color: #9f86a6;
-  margin: 80px auto;
 }
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 8px 0;
   border-radius: 5px;
   border: none;
+  font-size: 16px; /* Evita zoom automático no iOS ao focar no input */
 }
 
 button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: #fc80db;
   color: #132640;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-p {
-  font-size: 11px;
-  cursor: pointer;
-  color: #9f86a6;
+  font-weight: bold;
+  font-size: 16px;
   margin-top: 10px;
 }
 
+p {
+  font-size: 13px;
+  cursor: pointer;
+  color: #9f86a6;
+  margin-top: 15px;
+}
+
+/* Classes de Estado */
 .hidden {
   display: none;
 }
-.erro{
-  color: red;
+
+.erro {
+  color: #ff4d4d;
   font-size: 12px;
   margin-bottom: 5px;
+  display: block;
 }
 
-header {
-  background: #132640;
-  color: #9f86a6;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dashboard {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  padding: 20px;
-}
-
-.card {
-  background: #f2aee0;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.card hover {
-  transform: scale(1.05);
-}
-
-.card h3 {
-  margin: 10px 0 5px;
-  color: #9f86a6;
-}
-
-.card p {
-  font-size: 14px;
-  color: #9f86a6;
+/* Responsividade para telas muito pequenas */
+@media (max-width: 400px) {
+  .container {
+    padding: 20px 15px;
+  }
 }
