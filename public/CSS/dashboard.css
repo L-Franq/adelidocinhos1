@@ -14,70 +14,42 @@ body {
   width: 100%;
 }
 main {
-  margin: 0 auto 38px auto;
-  width: calc(100% - 14px);
-  max-width: 1400px; 
+  margin: 0 auto 5px auto;
+  width: 95%;
+  max-width: 1400px;
+  max-height: 1400px;
   padding: 35px 25px;
   background-color: #132640;
   border-radius: 16px;
   display: flex;
   gap: 15px;
-}
-header,
-main {
-  width: 95%;
-  max-width: 1400px;
+  box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
-  /* Garante que bordas e paddings não aumentem o tamanho do elemento */
-  box-sizing: border-box;
 }
+
 header {
   margin: 20px auto; /* Centraliza o header também */
-  width: calc(100% - 14px);
+  width: 95%;
   max-width: 1400px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header .horario {
-  border: 3px solid #f2aee0;
   border-radius: 4px;
+  background-color: #132640;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   flex: 1;
-  padding: 5px;
+  padding: 10px;
 }
 
 header .horario p {
   margin-bottom: 2px;
   font-size: 11px;
-  color: #ffffff;
-}
-
-header .botoes {
-  border: 3px solid #f2aee0;
-  border-radius: 4px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-  flex: 1;
-  padding: 10px; 
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-header .botoes button {
-  padding: 18px;
-  color: #132640;
-  background-color: #fc80db;
-  border: none;
-  border-radius: 3px;
-  margin: 5px;
-  cursor: pointer;
+  color: #f2aee0;
   font-weight: bold;
-}
-
-header .botoes button:hover {
-  background-color: #f2aee0;
-  transition: background-color 0.3s ease-in-out;
-  transform: scale(1.02);
 }
 
 main .adm {
@@ -88,9 +60,9 @@ main .adm {
 }
 
 .carregamentos {
-  flex: 1; 
+  flex: 1;
   background-color: #011826;
-  min-height: 500px;
+  min-height: 200px;
   position: relative;
   overflow: hidden; /* Corta qualquer vazamento interno */
   border-radius: 5px;
@@ -137,6 +109,7 @@ main .adm {
   margin: 3px 30px;
   cursor: pointer;
   font-weight: 700;
+  padding: 18px;
 }
 #dashboardIframe {
   width: 100%;
@@ -151,13 +124,13 @@ main .adm {
 /* Media Query corrigida */
 @media (max-width: 768px) {
   main {
-    flex-direction: column; 
+    flex-direction: column;
     height: auto;
     gap: 25px;
   }
 
   header {
-    flex-direction: column; 
+    flex-direction: column;
     gap: 15px;
   }
 
@@ -172,8 +145,8 @@ main .adm {
     padding: 12px;
   }
 
-  .carregamentos {
-    min-height: 400px;
+  main .carregamentos {
+    min-height: 200px;
   }
   .adm .accoes {
     display: grid;

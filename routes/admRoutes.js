@@ -6,7 +6,7 @@ const authcontroller = require("../controller/authcontroller");
 const path = require("path");
 const marcacoesController = require("../controller/marcacoesController");
 
-router.get("/", (req, res) => {
+router.get("/", admMiddleware, (req, res) => {
   res.sendFile(
     path.join(__dirname, "..", "public", "HTML", "admDashboard.html"),
   );

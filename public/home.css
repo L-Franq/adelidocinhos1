@@ -63,8 +63,8 @@ header .contact a {
 
 .contact:hover {
   background-color: #fc80db;
-  transition: background-color 0.3s ease-in-out;
-  transform: scale(1.08);
+  transition: background-color 0.5s ease-in-out;
+  transform: scale(1.02);
   color: #4f6f9b;
 }
 
@@ -84,7 +84,7 @@ header .contact a {
 
 .homeBout a:hover {
   border-top: 2px solid #f0cde6;
-  transition: border-top 0.1s ease-in-out;
+  transition: border-top 0.5 ease-in-out;
 }
 
 .face {
@@ -136,8 +136,8 @@ header .contact a {
 
 .cadastrar:hover {
   background-color: #fc80db;
-  transition: background-color 0.3s ease-in-out;
-  transform: scale(1.08);
+  transition: background-color 0.5s ease-in-out;
+  transform: scale(1.02);
   color: #03214b;
 }
 
@@ -193,7 +193,7 @@ header .contact a {
 }
 
 .cards, .users {
-  border: 4px double rgba(214, 190, 206, 0.973);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   border-radius: 8px;
   display: flex;
   flex-flow: row wrap;
@@ -204,9 +204,12 @@ header .contact a {
   background-color: #132640;
   margin-top: 10px;
 }
-
+.user img{
+  max-width: 100px;
+  border-radius: 50%;
+}
 .card, .user {
-  border: 4px double rgba(214, 190, 206, 0.973);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border-radius: 20px; /* Alterado de 50% para 20px para suportar texto longo no mobile */
   padding: 20px;
   height: auto;
@@ -215,6 +218,10 @@ header .contact a {
   width: 280px;
   color: #f2aee0;
   text-align: center;
+}
+
+#cadastrarFoot{
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 footer {
@@ -250,10 +257,11 @@ footer div {
   .menu { margin-left: 0; margin-top: 15px; }
   .dizeres h1, .dizeres p { margin-left: 0; text-align: center; }
   .cadastrar { margin-left: 0; width: 100%; }
+  footer .div{display: flex; align-items: center; justify-content: center;}
 }
 
 @media (max-width: 480px) {
   header img { width: 150px; }
-  footer { padding: 40px 10px; }
+  footer { padding: 40px 10px;}
   .card, .user { width: 100%; border-radius: 15px; }
 }
