@@ -13,11 +13,11 @@ function criarMarcacaoUser({ idUsuario, dia, turno, hora, descricao, lugar }) {
   });
 }
 
-function criarMarcacaoAdm({ dia, turno, hora, lugar, descricao }) {
+function criarMarcacaoAdm({ dia, turno, hora, descricao }) {
   return new Promise((resolve, reject) => {
     db.run(
-      `INSERT INTO marcacoes (dia, turno, hora, lugar, descricao) VALUES(?, ?, ?, ?, ?)`,
-      [dia, turno, hora, lugar, descricao],
+      `INSERT INTO marcacoes (dia, turno, hora, descricao) VALUES(?, ?, ?, ?)`,
+      [dia, turno, hora, descricao],
       function (err) {
         if (err) reject(err);
         else resolve(this.lastID);

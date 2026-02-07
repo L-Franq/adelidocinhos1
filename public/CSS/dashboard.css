@@ -8,10 +8,11 @@
   font-family: "Nunito", sans-serif;
 }
 body {
-  background-color: #011826;
+  /*background-color: #011826;*/
   min-height: 100vh;
   overflow-x: hidden; /* Garante que nada "vaze" para os lados */
   width: 100%;
+  background: #011826;
 }
 main {
   margin: 0 auto 5px auto;
@@ -40,7 +41,7 @@ header {
 header .horario {
   border-radius: 4px;
   background-color: #132640;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   flex: 1;
   padding: 10px;
 }
@@ -55,13 +56,14 @@ header .horario p {
 main .adm {
   flex: 0.3;
   border-radius: 5px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   background-color: #011826;
 }
 
 .carregamentos {
   flex: 1;
   background-color: #011826;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   min-height: 200px;
   position: relative;
   overflow: hidden; /* Corta qualquer vazamento interno */

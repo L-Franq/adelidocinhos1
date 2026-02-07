@@ -42,6 +42,13 @@ const tabelas = [
     idMar INTEGER,
     conteudoResumo TEXT,
     FOREIGN KEY (idMar) REFERENCES marcacoes (idMarc))`,
+
+  `CREATE TABLE IF NOT EXISTS visitantes (
+  idVisit INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT,
+  email TEXT,
+  telefone INTEGER,
+  mensagem TEXT)`,
 ];
 
 db.serialize(() => {

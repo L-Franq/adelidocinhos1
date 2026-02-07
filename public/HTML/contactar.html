@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/contactar.css">
+     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <title>Contactar</title>
+  </head>
+  <body>
+    <header><h1>Entre em Contacto</h1></header>
+
+    <main>
+      <h2>Preencha o formulário abaixo para nos enviar uma mensagem</h2>
+      <form id="formVisita" action="">
+        <input placeholder="nome" id="nome" required type="text" name="nome" />
+        <input name="email" id="email" placeholder="example@gmail.com" type="email" />
+        <input
+          id="telefone"
+          placeholder="+244 xxx xxx xxx"
+          required
+          type="tel"
+          maxlength="9"
+          name="telefone"
+        />
+        <textarea required name="assunto" id="assunto"></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </main>
+
+    <div class="Informacoes">
+      <h3>Informações de contacto</h3>
+      <span>Rua: Sanzala, Regedória</span>
+      <span>Tel: +244 999 999 999</span>
+      <span>Email: adelidocinhos@gmail.com</span>
+    
+       <span><a href=""></a></span>
+       <span><a href=""></a></span>
+       <span><a href=""></a></span>
+
+        <p>Cadastre-se hoje e faça a sua marcação</p>
+        <a href="/user/cadastrar-logar" class="cadastrar" id="cadastrar">Cadastre-se</a>
+
+        <script src="../JS/contactar.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

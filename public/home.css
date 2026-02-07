@@ -110,7 +110,8 @@ header .contact a {
   border-radius: 20px;
 }
 
-.dizeres h1, p {
+.dizeres h1,
+p {
   color: #f2aee0;
   margin-bottom: 20px;
   font-weight: bold;
@@ -172,7 +173,8 @@ header .contact a {
   opacity: 1;
 }
 
-.cardsOque, .userRate {
+.cardsOque,
+.userRate {
   max-width: 1400px;
   width: 100%;
   margin-top: 9px;
@@ -183,6 +185,9 @@ header .contact a {
   margin-bottom: 50px;
   height: auto;
   background-color: #132640;
+  animation: fedUp linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
 }
 
 .cardsOque h2 {
@@ -192,7 +197,8 @@ header .contact a {
   color: #fc80db;
 }
 
-.cards, .users {
+.cards,
+.users {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   border-radius: 8px;
   display: flex;
@@ -204,11 +210,12 @@ header .contact a {
   background-color: #132640;
   margin-top: 10px;
 }
-.user img{
+.user img {
   max-width: 100px;
   border-radius: 50%;
 }
-.card, .user {
+.card,
+.user {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border-radius: 20px; /* Alterado de 50% para 20px para suportar texto longo no mobile */
   padding: 20px;
@@ -220,8 +227,8 @@ header .contact a {
   text-align: center;
 }
 
-#cadastrarFoot{
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+#cadastrarFoot {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
 }
 
 footer {
@@ -246,22 +253,70 @@ footer div {
 /* --- MEDIA QUERIES (Ajustes de Responsividade) --- */
 
 @media (max-width: 1024px) {
-  header { gap: 50px; justify-content: center; }
-  header img { margin-left: 0; }
-  header .contact { margin-right: 0; }
+  header {
+    gap: 50px;
+    justify-content: center;
+  }
+  header img {
+    margin-left: 0;
+  }
+  header .contact {
+    margin-right: 0;
+  }
+}
+
+@keyframes fedUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 768px) {
-  .face { flex-direction: column; margin-left: 0; margin-right: 0; }
-  .dizeres, .imageMain { width: 100%; flex: none; }
-  .menu { margin-left: 0; margin-top: 15px; }
-  .dizeres h1, .dizeres p { margin-left: 0; text-align: center; }
-  .cadastrar { margin-left: 0; width: 100%; }
-  footer .div{display: flex; align-items: center; justify-content: center;}
+  .face {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .dizeres,
+  .imageMain {
+    width: 100%;
+    flex: none;
+  }
+  .menu {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+  .dizeres h1,
+  .dizeres p {
+    margin-left: 0;
+    text-align: center;
+  }
+  .cadastrar {
+    margin-left: 0;
+    width: 100%;
+  }
+  footer .div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
-  header img { width: 150px; }
-  footer { padding: 40px 10px;}
-  .card, .user { width: 100%; border-radius: 15px; }
+  header img {
+    width: 150px;
+  }
+  footer {
+    padding: 40px 10px;
+  }
+  .card,
+  .user {
+    width: 100%;
+    border-radius: 15px;
+  }
 }

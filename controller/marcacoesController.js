@@ -24,14 +24,13 @@ async function criarMarcacaoUser(req, res) {
 
 async function criarMarcacaoAdm(req, res) {
   try {
-    const { dia, turno, hora, lugar, descricao } = req.body;
+    const { dia, turno, hora, descricao } = req.body;
 
     await marcacoesModel.criarMarcacaoAdm({
       dia,
       turno,
       hora,
       descricao,
-      lugar,
       status: "ativo",
     });
 
