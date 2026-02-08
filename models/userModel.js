@@ -50,13 +50,19 @@ function buscarUser(id, nome) {
 
 function buscarTudoUser() {
   return new Promise((resolve, reject) => {
-    db.all(
-      `SELECT idUsuario, nome FROM usuarios`,[],
-      (err, row) => {
-        if (err) reject(err);
-        else resolve(row);
-      },
-    );
+    db.all(`SELECT idUsuario, nome FROM usuarios`, [], (err, row) => {
+      if (err) reject(err);
+      else resolve(row);
+    });
+  });
+}
+
+function deletarUsuario(id) {
+  return new Promise((resolve, reject) => {
+    db.run(`DELETE FROM usuarios WHERE idUsuario = ?`, [id], function (err) {
+      if (err) reject(err);
+      else resolve(this.changes);
+    });
   });
 }
 
@@ -66,4 +72,5 @@ module.exports = {
   buscarNomeUserPorId,
   buscarUser,
   buscarTudoUser,
+  deletarUsuario,
 };

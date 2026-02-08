@@ -8,6 +8,18 @@ const perfilPic = document.getElementById("perfilPic");
 const inputFoto = document.getElementById("inputFoto");
 const btnListaDeUsers = document.getElementById("lista");
 
+const mostrarAlerta = (titulo, texto, icone) => {
+  Swal.fire({
+    title: titulo,
+    text: texto,
+    icon: icone,
+    background: '#132640', // Cor do seu sistema
+    color: '#9f86a6',      // Cor do seu texto
+    confirmButtonColor: '#fc80db', // Cor do seu botão
+    iconColor: icone === 'success' ? '#fc80db' : '#f2aee0'
+  });
+};
+
 let agora = new Date();
 
 hoje.innerText = "Data: " + agora.toLocaleDateString();
@@ -46,8 +58,7 @@ inputFoto.addEventListener("change", () => {
   if (!file) return;
 
   if (!file.type.startsWith("image/")) {
-    Swal.fire("Por favor", "Selecione uma imagem válida", "warning");
-
+    mostrarAlerta("Por favor", "Selecione uma imagem válida", "warning");
     return;
   }
 

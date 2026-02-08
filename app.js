@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -12,9 +14,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   session({
-    secret: "segredo-super-secreto",
+    secret: process.env.SESSION_SECRET || "fallback-de-seguranca",
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 100 * 60 * 60 * 24,
+    },
   }),
 );
 

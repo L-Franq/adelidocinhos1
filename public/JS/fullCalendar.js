@@ -7,6 +7,18 @@ const coresTurno = {
   noite: "#32CD32",
 };
 
+const mostrarAlerta = (titulo, texto, icone) => {
+  Swal.fire({
+    title: titulo,
+    text: texto,
+    icon: icone,
+    background: "#132640", // Cor do seu sistema
+    color: "#9f86a6", // Cor do seu texto
+    confirmButtonColor: "#fc80db", // Cor do seu botão
+    iconColor: icone === "success" ? "#fc80db" : "#f2aee0",
+  });
+};
+
 async function obterRole() {
   const res = await fetch("/whoami", { credentials: "include" });
   const data = await res.json();
@@ -26,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       url: "/user/marcacoes/mes",
       method: "GET",
       failure() {
-        alert("Erro ao carregar marcações");
+        mostrarAlerta("Falha", "Erro ao carregar marcações", "error");
       },
     },
 
@@ -93,7 +105,7 @@ function configurarModalUser() {
       form.reset();
       calendar.refetchEvents(); // 🔥 Atualiza visual
     } else {
-      alert(json.erro);
+      mostrarAlerta("Falha", json.erro, "error");
     }
   };
 }
@@ -168,9 +180,8 @@ function configurarModalAdm() {
     };
 
     const url = editandoId ? `/adm/marcacoes/${editandoId}` : "/adm/marcacoes";
-   
+
     const method = editandoId ? "PUT" : "POST";
-     console.log(method);
 
     await fetch(url, {
       method,

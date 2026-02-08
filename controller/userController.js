@@ -30,7 +30,28 @@ async function getNomeId(req, res) {
   }
 }
 
+async function deletarUsuario(req, res) {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ erro: "Sem ID" });
+    }
+
+    const changes = await userModel.deletarUsuario(id);
+
+    if (changes === 0) {
+      return res.status(404).json({ erro: "Usuário não encontrado!" });
+    }
+
+    res.json({ sucesso: true });
+  } catch (error) {
+    return res.status(500).json({ erro: "Falha ao Deletar" });
+  }
+}
+
 module.exports = {
   getDadosUser,
   getNomeId,
+  deletarUsuario,
 };

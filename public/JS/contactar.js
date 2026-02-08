@@ -1,4 +1,15 @@
 const form = document.getElementById("formVisita");
+const mostrarAlerta = (titulo, texto, icone) => {
+  Swal.fire({
+    title: titulo,
+    text: texto,
+    icon: icone,
+    background: '#132640', // Cor do seu sistema
+    color: '#9f86a6',      // Cor do seu texto
+    confirmButtonColor: '#fc80db', // Cor do seu botão
+    iconColor: icone === 'success' ? '#fc80db' : '#f2aee0'
+  });
+};
 
 form.onsubmit = async (e) => {
   e.preventDefault();
@@ -21,8 +32,8 @@ form.onsubmit = async (e) => {
   const json = await res.json();
 
   if (json.sucesso) {
-    Swal.fire("Obrigado!", "Mensagem Enviada.", "success")
+    mostrarAlerta("Obrigado!", "Mensagem Enviada", "sucess");
   } else {
-    Swal.fire("Lamentamos!", json.erro, "error")
+    mostrarAlerta("Lamentamos!", json.erro, "error");
   }
 };

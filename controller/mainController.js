@@ -13,7 +13,6 @@ async function criarVisitas(req, res) {
 
     res.json({ sucesso: true });
   } catch (error) {
-    console.log("Catch: ", error);
     res.status(500).json({ erro: "Falha ao Enviar!" });
   }
 }

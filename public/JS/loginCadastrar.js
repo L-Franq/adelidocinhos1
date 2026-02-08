@@ -10,6 +10,18 @@ const telefoneInput = document.getElementById("cadastrarTelefone").value;
 const pErro = document.getElementById("erro");
 const loginErro = document.getElementById("erroL");
 
+const mostrarAlerta = (titulo, texto, icone) => {
+  Swal.fire({
+    title: titulo,
+    text: texto,
+    icon: icone,
+    background: "#132640", // Cor do seu sistema
+    color: "#9f86a6", // Cor do seu texto
+    confirmButtonColor: "#fc80db", // Cor do seu botão
+    iconColor: icone === "success" ? "#fc80db" : "#f2aee0",
+  });
+};
+
 jaTenho.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -72,10 +84,10 @@ formCadastro.addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (data.sucesso) {
-    setTimeout(
-      Swal.fire("Sucesso", "Cadastrado com sucesso.", "success"),
-      8000,
-    );
+    setTimeout(() => {
+      mostrarAlerta("Bem-Vindo", "Cadastrado com sucesso.", "success");
+    }, 8000);
+
     location.href = "/user/cadastrar-logar";
 
     if (formLogin && titulo) {
@@ -85,7 +97,10 @@ formCadastro.addEventListener("submit", async (e) => {
 
       titulo.innerText = "Login";
     }
-  } else setTimeout(Swal.fire(data.erro, "Data inválida", "error"), 8000);
+  } else
+    setTimeout(() => {
+      mostrarAlerta(data.erro, "Erro ao cadastrar", "error");
+    }, 8000);
 });
 
 formLogin.addEventListener("submit", async (e) => {
@@ -99,7 +114,7 @@ formLogin.addEventListener("submit", async (e) => {
   const data = await res.json();
 
   if (data.sucesso) {
-    setTimeout(Swal.fire("Processando", "Loading...", "success"), 8000);
+    mostrarAlerta("Processando", "...", "success");
     // Redireciona dependendo do tipo de usuário
     location.href = data.redirect;
   } else {

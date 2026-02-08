@@ -5,8 +5,9 @@ const admMiddleware = require("../middleware/isAdm");
 const authcontroller = require("../controller/authcontroller");
 const path = require("path");
 const marcacoesController = require("../controller/marcacoesController");
+const userController = require("../controller/userController");
 
-router.get("/", (req, res) => {
+router.get("/", admMiddleware, (req, res) => {
   res.sendFile(
     path.join(__dirname, "..", "public", "HTML", "admDashboard.html"),
   );
@@ -26,5 +27,7 @@ router.put(
   admMiddleware,
   marcacoesController.atualizarMarcacao,
 );
+
+router.delete("/deletarUser/:id", admMiddleware, userController.deletarUsuario);
 
 module.exports = router;
