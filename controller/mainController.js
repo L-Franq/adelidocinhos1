@@ -1,6 +1,6 @@
 const mainModel = require("../models/mainModel");
 
-async function criarVisitas(req, res) {
+async function mensagensDeVisitas(req, res) {
   try {
     const { nome, email, telefone, assunto } = req.body;
 
@@ -17,4 +17,4 @@ async function criarVisitas(req, res) {
   }
 }
 
-module.exports = { criarVisitas };
+module.exports = { mensagensDeVisitas };

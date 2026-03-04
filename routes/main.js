@@ -15,5 +15,5 @@ router.get("/contact", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "HTML", "contactar.html"));
 });
 
-router.post("/visitas", mainController.criarVisitas);
+router.post("/visitas", mainController.mensagensDeVisitas);
 module.exports = router;

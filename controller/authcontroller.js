@@ -7,7 +7,7 @@ async function cadastroUser(req, res) {
     req.body;
 
   if (await userModel.buscarUserPorEmail(cadastrarEmail)) {
-    return res.status(400).json({ erro: "Email já cadastrado" });
+    return res.status(400).json({ erro: "Lamentamos! email ja cadastrado." });
   }
 
   const senhaAsh = await bcrypt.hash(cadastrarSenha, 10);

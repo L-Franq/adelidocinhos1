@@ -5,6 +5,7 @@ const coresTurno = {
   manha: "#FFA500",
   tarde: "#1E90FF",
   noite: "#32CD32",
+  espera: "#888",
 };
 
 const mostrarAlerta = (titulo, texto, icone) => {

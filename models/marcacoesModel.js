@@ -13,6 +13,19 @@ function criarMarcacaoUser({ idUsuario, dia, turno, hora, descricao, lugar }) {
   });
 }
 
+async function verificarDia(dia) {
+  return new Promise((resolve, reject) => {
+    db.get(
+      `SELECT COUNT(*) as total FROM marcacoes WHERE dia = ?`,
+      [dia],
+      (err, row) => {
+        if (err) reject(err);
+        else resolve(row.total || 0);
+      },
+    );
+  });
+}
+
 function criarMarcacaoAdm({ dia, turno, hora, descricao }) {
   return new Promise((resolve, reject) => {
     db.run(
@@ -63,4 +76,5 @@ module.exports = {
   apagarMarcacao,
   atualizarMarcacao,
   criarMarcacaoAdm,
+  verificarDia,
 };

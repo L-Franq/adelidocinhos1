@@ -33,7 +33,7 @@ router.get("/userNomeId", userMiddleware, userController.getNomeId);
 
 router.post("/cadastro", auth.cadastroUser);
 
-router.post("/marcar", userMiddleware, marcacaoController.criarMarcacaoUser);
+router.post("/marcar", userMiddleware, marcacaoController.postarMarcacaoUser);
 
 router.get("/marcacoes/mes", (req, res) => {
   const rows = db.all(`SELECT dia, turno FROM marcacoes`, [], (err, rows) => {

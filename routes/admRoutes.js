@@ -15,19 +15,19 @@ router.get("/", admMiddleware, (req, res) => {
 
 router.post("/login", authcontroller.login);
 router.get("/dados", admMiddleware, admController.getDadosAdm);
-router.get("/marcacoes", admMiddleware, marcacoesController.buscarMarcacao);
-router.post("/marcacoes", admMiddleware, marcacoesController.criarMarcacaoAdm);
+router.get("/marcacoes", admMiddleware, marcacoesController.pegarMarcacao);
+router.post("/marcacoes", admMiddleware, marcacoesController.postarMarcacaoAdm);
 router.delete(
   "/marcacoes/:id",
   admMiddleware,
-  marcacoesController.apagarMarcacao,
+  marcacoesController.eliminarMarcacao,
 );
 router.put(
   "/marcacoes/:id",
   admMiddleware,
-  marcacoesController.atualizarMarcacao,
+  marcacoesController.renovararMarcacao,
 );
 
-router.delete("/deletarUser/:id", admMiddleware, userController.deletarUsuario);
+router.delete("/deletarUser/:id", admMiddleware, userController.apagarUsuario);
 
 module.exports = router;
