@@ -4,7 +4,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const session = require("express-session");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 const HOST = "0.0.0.0";
 
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
       maxAge: 100 * 60 * 60 * 24,
     },
   }),
@@ -38,4 +38,4 @@ app.use("/agenda", fullCalendar);
 app.use("/user", userAuthRoutes);
 app.use(whoamiRoute);
 
-app.listen(PORT, HOST, () => console.log(`App running in ${PORT} port`));
+app.listen(PORT, HOST, () => console.log(`App running on port ${PORT}`));

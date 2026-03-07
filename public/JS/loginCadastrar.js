@@ -3,10 +3,6 @@ const jaTenho = document.getElementById("jaTenho");
 const formCadastro = document.getElementById("formCadastro");
 const formLogin = document.getElementById("formlogin");
 const titulo = document.getElementById("titulo");
-const senhaInput = document.getElementById("cadastrarSenha").value;
-const nomeInput = document.getElementById("cadastrarNome").value;
-const emailInput = document.getElementById("cadastrarEmail").value;
-const telefoneInput = document.getElementById("cadastrarTelefone").value;
 const pErro = document.getElementById("erro");
 const loginErro = document.getElementById("erroL");
 
@@ -44,6 +40,11 @@ aindaNaotenho.addEventListener("click", (event) => {
 
 formCadastro.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  const senhaInput = document.getElementById("cadastrarSenha").value;
+  const nomeInput = document.getElementById("cadastrarNome").value;
+  const emailInput = document.getElementById("cadastrarEmail").value;
+  const telefoneInput = document.getElementById("cadastrarTelefone").value;
 
   if (nomeInput === null || nomeInput === "") {
     pErro.classList.remove("hidden");

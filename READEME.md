@@ -1,11 +1,11 @@
-# 🍰 Adelidocinhos – Confeitaria
+# Adelidocinhos – Confeitaria
 
 Sistema web desenvolvido para auxiliar no atendimento ao cliente e na gestão básica de pedidos de uma confeitaria artesanal.  
 O objetivo é facilitar o atendimento, organizar encomendas e permitir a expansão da marca para o meio digital.
 
 ---
 
-## 📖 Sobre o Projeto
+## Sobre o Projeto
 
 Este projeto foi criado para ajudar uma confeiteira que trabalha com a produção de doces artesanais, mas ainda não possui um sistema digital para apoiar o atendimento aos clientes.
 
@@ -20,7 +20,7 @@ O projeto está em desenvolvimento e será evoluído gradualmente conforme as ne
 
 ---
 
-## ✨ Funcionalidades (Planeadas e em Desenvolvimento)
+## Funcionalidades (Planeadas e em Desenvolvimento)
 
 - Cadastro de clientes
 - Registo de pedidos
@@ -31,14 +31,13 @@ O projeto está em desenvolvimento e será evoluído gradualmente conforme as ne
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Front-end
 
 - HTML5
 - CSS3
 - JavaScript
-- OBS: Tudo Vanilla(Todas as tecnologias puras, sem frameworks)
 
 ### Back-end
 
@@ -50,6 +49,11 @@ O projeto está em desenvolvimento e será evoluído gradualmente conforme as ne
 - SQLite
 
 ---
+
+## Colaboradores
+- Lopo Franqueira
+Email: lothfranqueira1@gmail.com
+Github: https://github.com/L-Franq
 
 ## ⚙️ Instalação
 
