@@ -1,61 +1,78 @@
 const db = require("./db");
 
-db.run("PRAGMA foreign_keys = ON");
-
-const tabelas = [
-  `CREATE TABLE IF NOT EXISTS usuarios(
-    idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,
+const criarTabelas = async () => {
+  const tabelas = [
+    `CREATE TABLE IF NOT EXISTS usuarios(
+    idUsuario SERIAL PRIMARY KEY,
     nome TEXT NOT NULL,
     email TEXT UNIQUE,
     telefone INTEGER UNIQUE NOT NULL,
     senha TEXT NOT NULL)`,
 
-  `CREATE TABLE IF NOT EXISTS administradores(
-    idAdm INTEGER PRIMARY KEY AUTOINCREMENT,
+    `CREATE TABLE IF NOT EXISTS administradores(
+    idAdm SERIAL PRIMARY KEY,
     nome TEXT NOT NULL,
     email TEXT UNIQUE,
     telefone INTEGER UNIQUE NOT NULL,
     senha TEXT NOT NULL)`,
 
-  ` CREATE TABLE IF NOT EXISTS marcacoes (
-     idMarc INTEGER PRIMARY KEY AUTOINCREMENT,
+    `CREATE TABLE IF NOT EXISTS usuarios(
+      idUsuario SERIAL PRIMARY KEY,
+      nome VARCHAR(255) NOT NULL,
+      email VARCHAR(255) UNIQUE,
+      telefone VARCHAR(20) UNIQUE NOT NULL,
+      senha TEXT NOT NULL
+    )`,
 
-    idUsuario INTEGER, 
-    -- NULL quando for ação do ADM (bloqueio)
+    `CREATE TABLE IF NOT EXISTS administradores(
+      idAdm SERIAL PRIMARY KEY,
+      nome VARCHAR(255) NOT NULL,
+      email VARCHAR(255) UNIQUE,
+      telefone VARCHAR(20) UNIQUE NOT NULL,
+      senha TEXT NOT NULL
+    )`,
 
-    dia TEXT NOT NULL,          
-    turno TEXT NOT NULL,        
-    descricao TEXT,
-    lugar TEXT,
-    hora TEXT,
+    `CREATE TABLE IF NOT EXISTS marcacoes (
+      idMarc SERIAL PRIMARY KEY,
+      idUsuario INTEGER REFERENCES usuarios(idUsuario), 
+      dia DATE NOT NULL,          
+      turno VARCHAR(50) NOT NULL,        
+      descricao TEXT,
+      lugar VARCHAR(255),
+      hora TIME,
+      status VARCHAR(20) NOT NULL DEFAULT 'ativo',
+      criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`,
 
-    status TEXT NOT NULL DEFAULT 'ativo',
-    -- ativo | espera | bloqueado | cancelado
+    `CREATE TABLE IF NOT EXISTS resum(
+      idResumo SERIAL PRIMARY KEY,
+      idMarc INTEGER REFERENCES marcacoes(idMarc),
+      conteudoResumo TEXT
+    )`,
 
-    criadoEm DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `CREATE TABLE IF NOT EXISTS visitantes (
+      idVisit SERIAL PRIMARY KEY,
+      nome VARCHAR(255),
+      email VARCHAR(255),
+      telefone VARCHAR(20),
+      mensagem TEXT
+    )`,
+  ];
 
-   FOREIGN KEY (idUsuario) REFERENCES usuarios (idUsuario)
-)`,
+  try {
+    for (let sql of tabelas) {
+      await db.query(sql);
+      console.log("Tabela processada com sucesso.");
+    }
+    console.log("Todas as tabelas foram verificadas/criadas!");
+  } catch (err) {
+    console.error("Erro ao criar tabelas:", err.message);
+  } finally {
+    process.exit();
+  }
+};
 
-  `CREATE TABLE IF NOT EXISTS resumos(
-    idResumo INTEGER PRIMARY KEY AUTOINCREMENT,
-    idMar INTEGER,
-    conteudoResumo TEXT,
-    FOREIGN KEY (idMar) REFERENCES marcacoes (idMarc))`,
-
-  `CREATE TABLE IF NOT EXISTS visitantes (
-  idVisit INTEGER PRIMARY KEY AUTOINCREMENT,
-  nome TEXT,
-  email TEXT,
-  telefone INTEGER,
-  mensagem TEXT)`,
-];
-
-db.serialize(() => {
-  tabelas.forEach((sql) => {
-    db.run(sql);
-  });
-});
+criarTabelas();
 
 /* Como "ver" os dados juntos?
 Para exibir o resumo junto com o dia,

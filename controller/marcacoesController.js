@@ -1,46 +1,86 @@
 const marcacoesModel = require("../models/marcacoesModel");
 
-async function criarMarcacaoUser(req, res) {
+async function postarMarcacaoUser(req, res) {
   try {
     const { dia, turno, hora, descricao, lugar } = req.body;
 
-    const idUsuario = req.session.user.id;
+    const horaTratada = (hora && hora.trim() !== "") ? hora : null;
 
-    await marcacoesModel.criarMarcacaoUser({
-      idUsuario,
-      dia,
-      turno,
-      hora,
-      descricao,
-      lugar,
-      status: "ativo",
-    });
+    const idUsuario = req.session.user.id;
+    const totalNumDias = await marcacoesModel.verificarDia(dia);
+
+    if (totalNumDias < 3) {
+      await marcacoesModel.criarMarcacaoUser({
+        idUsuario,
+        dia,
+        turno,
+        horaTratada,
+        descricao,
+        lugar,
+        status: "ativo",
+      });
+    } else if (totalNumDias < 5) {
+      await marcacoesModel.criarMarcacaoUser({
+        idUsuario,
+        dia,
+        turno: "espera",
+        hora,
+        descricao,
+        lugar,
+        status: "ativo",
+      });
+    } else {
+      res
+        .status(400)
+        .json({ erro: "Dia Lotado! Nao ha mais vagas nem esperas." });
+    }
 
     res.json({ sucesso: true });
-  } catch (err) {
-    res.status(500).json({ erro: "Erro ao criar marcacao!" });
+  } catch (error) {
+    console.error("Falha no servidor: ", error)
+    res.status(500).json({ erro: "Marcacao falhou! Tente mais tarde. problemas de conexao!" });
   }
 }
 
-async function criarMarcacaoAdm(req, res) {
+async function postarMarcacaoAdm(req, res) {
   try {
     const { dia, turno, hora, descricao } = req.body;
+    const totalNumDias = await marcacoesModel.verificarDia(dia);
 
-    await marcacoesModel.criarMarcacaoAdm({
-      dia,
-      turno,
-      hora,
-      descricao,
-      status: "ativo",
-    });
+    const horaTratada = (hora && hora.trim() !== "") ? hora : null;
 
-    res.json({ sucesso: true });
-  } catch (err) {
-    res.status(500).json({ erro: "Erro ao criar marcacao ADM!" });
+    if (totalNumDias < 3) {
+      await marcacoesModel.criarMarcacaoAdm({
+        dia,
+        turno,
+        horaTratada,
+        descricao,
+        status: "ativo",
+      });
+    } else if (totalNumDias < 5) {
+      await marcacoesModel.criarMarcacaoAdm({
+        dia,
+        turno,
+        hora,
+        descricao,
+        status: "ativo",
+      });
+    } else {
+      res
+        .status(400)
+        .json({ erro: "Dia Lotado! Nao ha mais vagas nem esperas." });
+    }
+
+    res.json({ sucesso: true, mensagem: `Marcação salva como ${turno}` });
+  } catch (error) {
+    console.error("Falha no servidor: ", error)
+    res
+      .status(500)
+      .json({ erro: "Erro ao criar marcacao. Falha no servidor!" });
   }
 }
 
-async function buscarMarcacao(req, res) {
+async function pegarMarcacao(req, res) {
   try {
     const { dia } = req.query;
 
@@ -54,7 +94,7 @@ async function buscarMarcacao(req, res) {
   }
 }
 
-async function apagarMarcacao(req, res) {
+async function eliminarMarcacao(req, res) {
   try {
     const { id } = req.params;
 
@@ -68,12 +108,13 @@ async function apagarMarcacao(req, res) {
       return res.status(404).json({ erro: "Marcacao nao encontrada." });
 
     return res.json({ sucesso: true });
-  } catch (err) {
-    res.status(500).json({ erro: "Falha a apagar marcacao" });
+  } catch (error) {
+    console.error("Falha no servidor: ", error)
+    res.status(500).json({ erro: "Falha a apagar marcacao! tente mais tarde." });
   }
 }
 
-async function atualizarMarcacao(req, res) {
+async function renovararMarcacao(req, res) {
   try {
     const { id } = req.params;
 
@@ -92,16 +133,16 @@ async function atualizarMarcacao(req, res) {
       return res.status(401).json({ erro: "Marcacao nao encontrada." });
 
     return res.json({ sucesso: true });
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error("Falha no servidor: ", error);
     res.status(500).json({ erro: "Falha a atualizar marcacao" });
   }
 }
 
 module.exports = {
-  criarMarcacaoUser,
-  criarMarcacaoAdm,
-  buscarMarcacao,
-  apagarMarcacao,
-  atualizarMarcacao,
+  postarMarcacaoUser,
+  postarMarcacaoAdm,
+  pegarMarcacao,
+  eliminarMarcacao,
+  renovararMarcacao,
 };

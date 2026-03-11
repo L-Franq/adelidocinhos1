@@ -1,71 +1,67 @@
 const db = require("../databases/db");
 
-function buscarNomeUserPorId(id) {
-  return new Promise((resolve, reject) => {
-    db.get(
-      `SELECT nome FROM usuarios WHERE idUsuario = ?`,
-      [id],
-      (err, row) => {
-        if (err) reject(err);
-        else resolve(row);
-      },
-    );
-  });
+async function buscarNomeUserPorId(id) {
+  const sql = `SELECT nome FROM usuarios WHERE idusuario = $1`;
+  try {
+    const res = await db.query(sql, [id]);
+    return res.rows[0];
+  } catch (err) {
+    throw err;
+  }
 }
 
-function criarUser(nome, email, telefone, senhaAsh) {
-  return new Promise((resolve, reject) => {
-    db.run(
-      `INSERT INTO usuarios (nome, email, telefone, senha) VALUES(?, ?, ?, ?)`,
-      [nome, email, telefone, senhaAsh],
-      function (err) {
-        if (err) reject(err);
-        else resolve(this.lastID);
-      },
-    );
-  });
+async function criarUser(nome, email, telefone, senhaAsh) {
+  const sql = `
+    INSERT INTO usuarios (nome, email, telefone, senha) 
+    VALUES($1, $2, $3, $4) 
+    RETURNING idUsuario`;
+  try {
+    const res = await db.query(sql, [nome, email, telefone, senhaAsh]);
+    return res.rows[0].idusuario;
+  } catch (err) {
+    throw err;
+  }
 }
 
-function buscarUserPorEmail(email) {
-  return new Promise((resolve, reject) => {
-    db.get(`SELECT * FROM usuarios WHERE email = ?`, [email], (err, row) => {
-      if (err) reject(err);
-      else resolve(row);
-    });
-  });
+async function buscarUserPorEmail(email) {
+  const sql = `SELECT * FROM usuarios WHERE email = $1`;
+  try {
+    const res = await db.query(sql, [email]);
+    return res.rows[0];
+  } catch (err) {
+    throw err;
+  }
 }
 
-function buscarUser(id, nome) {
-  return new Promise((resolve, reject) => {
-    db.get(
-      `SELECT idUsuario, nome FROM usuarios  WHERE idUsuario = ?`,
-      [id, nome],
-      (err, row) => {
-        if (err) reject(err);
-        else resolve(row);
-      },
-    );
-  });
+async function buscarUser(id, nome) {
+  const sql = `SELECT idusuario, nome FROM usuarios WHERE idusuario = $1 AND nome = $2`;
+  try {
+    const res = await db.query(sql, [id, nome]);
+    return res.rows[0];
+  } catch (err) {
+    throw err;
+  }
 }
 
-function buscarTudoUser() {
-  return new Promise((resolve, reject) => {
-    db.all(`SELECT idUsuario, nome FROM usuarios`, [], (err, row) => {
-      if (err) reject(err);
-      else resolve(row);
-    });
-  });
+async function buscarTudoUser() {
+  const sql = `SELECT idusuario, nome FROM usuarios`;
+  try {
+    const res = await db.query(sql);
+    return res.rows;
+  } catch (err) {
+    throw err;
+  }
 }
 
-function deletarUsuario(id) {
-  return new Promise((resolve, reject) => {
-    db.run(`DELETE FROM usuarios WHERE idUsuario = ?`, [id], function (err) {
-      if (err) reject(err);
-      else resolve(this.changes);
-    });
-  });
+async function deletarUsuario(id) {
+  const sql = `DELETE FROM usuarios WHERE idusuario = $1`;
+  try {
+    const res = await db.query(sql, [id]);
+    return res.rowCount;
+  } catch (err) {
+    throw err;
+  }
 }
-
 module.exports = {
   criarUser,
   buscarUserPorEmail,

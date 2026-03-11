@@ -1,29 +1,29 @@
 const db = require("../databases/db");
 
-function buscarNomeAdmPorId(id) {
-  return new Promise((resolve, reject) => {
-    db.get(
-      `SELECT nome FROM administradores WHERE idAdm = ?`,
-      [id],
-      (err, row) => {
-        if (err) reject(err);
-        else resolve(row);
-      }
-    );
-  });
+async function buscarNomeAdmPorId(id) {
+  const sql = `SELECT nome FROM administradores WHERE idadm = $1`;
+  
+  try {
+    const res = await db.query(sql, [id]);
+    // res.rows é um array. Se encontrou, retornamos a primeira posição.
+    return res.rows[0]; 
+  } catch (err) {
+    console.error("Erro em buscarNomeAdmPorId:", err);
+    throw err;
+  }
 }
 
-function findAdmByEmail(email) {
-  return new Promise((resolve, reject) => {
-    db.get(
-      `SELECT * FROM administradores WHERE email = ?`,
-      [email],
-      function (err, row) {
-        if (err) reject(err);
-        else resolve(row);
-      }
-    );
-  });
+async function findAdmByEmail(email) {
+  const sql = `SELECT * FROM administradores WHERE email = $1`;
+  
+  try {
+    const res = await db.query(sql, [email]);
+    // Retorna a linha (objeto) ou undefined se não existir
+    return res.rows[0]; 
+  } catch (err) {
+    console.error("Erro em findAdmByEmail:", err);
+    throw err;
+  }
 }
 
 module.exports = {

@@ -5,6 +5,7 @@ const coresTurno = {
   manha: "#FFA500",
   tarde: "#1E90FF",
   noite: "#32CD32",
+  espera: "#888",
 };
 
 const mostrarAlerta = (titulo, texto, icone) => {
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
 
-    // 🔥 FULLCALENDAR BUSCA DIRETO DO SERVIDOR
+    //FULLCALENDAR BUSCA DIRETO DO SERVIDOR
     events: {
       url: "/user/marcacoes/mes",
       method: "GET",
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     },
 
-    // 🎨 Cor por turno
+    //Cor por turno
     eventDidMount(info) {
       const turno = info.event.extendedProps.turno;
       info.el.style.backgroundColor = coresTurno[turno] || "#888";
@@ -103,7 +104,7 @@ function configurarModalUser() {
     if (json.sucesso) {
       modal.classList.add("hidden");
       form.reset();
-      calendar.refetchEvents(); // 🔥 Atualiza visual
+      calendar.refetchEvents(); //Atualiza visual
     } else {
       mostrarAlerta("Falha", json.erro, "error");
     }
@@ -136,17 +137,24 @@ function configurarModalAdm() {
       credentials: "include",
     });
 
-    const marcacoes = await res.json();
+    const data = await res.json();
+
+    if(!Array.isArray(data)){
+      console.error("Recebido algo que nao e uma lista");
+      lista.innerHTML = `<li>Nenhuma marcação encontrada.</li>`;
+      return;
+    }
+
     lista.innerHTML = "";
 
-    marcacoes.forEach((m) => {
+    data.forEach((m) => {
       const li = document.createElement("li");
       li.innerText = `${m.turno} - ${m.hora} - ${m.descricao}`;
 
       const btnE = document.createElement("button");
       btnE.innerText = "Editar";
       btnE.onclick = () => {
-        editandoId = m.idMarc;
+        editandoId = m.idmarc;
         document.getElementById("horaAdm").value = m.hora;
         document.getElementById("turnoAdm").value = m.turno;
         document.getElementById("descricaoAdm").value = m.descricao;
@@ -155,7 +163,7 @@ function configurarModalAdm() {
       const btnX = document.createElement("button");
       btnX.innerText = "Excluir";
       btnX.onclick = async () => {
-        await fetch(`/adm/marcacoes/${m.idMarc}`, {
+        await fetch(`/adm/marcacoes/${m.idmarc}`, {
           method: "DELETE",
           credentials: "include",
         });

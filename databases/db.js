@@ -1,8 +1,20 @@
-const sqlite3 = require("sqlite3").verbose();
+require("dotenv").config();
+const { Pool } = require("pg");
 
-const db = new sqlite3.Database(process.env.DB_STORAGE || "./database.db", (err) => {
-  if (err) console.log("Erro ao se conectar", err.message);
-  else console.log("Conectado com sucesso");
+const db = new Pool({
+  user: process.env.USER_NAME,
+  host: process.env.HOST,
+  database: process.env.DB_STORAGE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.SERVER_PORT,
+});
+
+db.connect((err, client, release) => {
+  if (err) {
+    return console.error("Falha ao se conectar com a db: ", err.stack);
+  }
+  console.log("Conectado ao banco com sucesso!");
+  release();
 });
 
 module.exports = db;

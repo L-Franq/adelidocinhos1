@@ -1,6 +1,6 @@
 const mainModel = require("../models/mainModel");
 
-async function criarVisitas(req, res) {
+async function mensagensDeVisitas(req, res) {
   try {
     const { nome, email, telefone, assunto } = req.body;
 
@@ -13,8 +13,9 @@ async function criarVisitas(req, res) {
 
     res.json({ sucesso: true });
   } catch (error) {
-    res.status(500).json({ erro: "Falha ao Enviar!" });
+    console.error("Falha no servidor: ", error)
+    res.status(500).json({ erro: "Falha ao Enviar! Servidor temporariamente indisponivel" });
   }
 }
 
-module.exports = { criarVisitas };
+module.exports = { mensagensDeVisitas };
