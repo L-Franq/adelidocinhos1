@@ -2,8 +2,8 @@ require("dotenv").config({ path: "../.env" });
 const db = require("./db");
 
 async function semearAdm() {
-  const nome = "Adelia Calala";
-  const email = "calala@gmail.com"; 
+  const nome = process.env.ADMIN_NAME;
+  const email = process.env.ADMIN_EMAIL; 
   const telefone = process.env.PHONE_NUMBER;     
   const senhaPlana = process.env.DB_PASSWORD;
   
