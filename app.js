@@ -4,7 +4,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const session = require("express-session");
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 const HOST = "0.0.0.0";
 
 app.use(express.json());
@@ -24,7 +24,8 @@ app.use(
   }),
 );
 
-require("./databases/init");
+//require("./databases/init");
+//require("./databases/seed");
 
 const mainRoute = require("./routes/main");
 const admRoute = require("./routes/admRoutes");

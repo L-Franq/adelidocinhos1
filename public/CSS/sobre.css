@@ -71,6 +71,12 @@ body {
   text-align: center;
 }
 
+li:hover {
+  transform: scale(1.32);
+  transition: transform 0.8s;
+  cursor: pointer;
+}
+
 #about footer {
   margin-top: 40px;
   text-align: center;
@@ -89,7 +95,10 @@ body {
   padding: 12px 25px;
   margin-top: 10px;
   text-decoration: none;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  color: #011826;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
 }
 
 #about footer a:hover {

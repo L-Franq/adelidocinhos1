@@ -20,7 +20,7 @@ indispo.forEach((msg) => {
     e.preventDefault();
     setTimeout(() => {
       mostrarAlerta("Lamentamos!", "Serviço indisponível no momento.", "info");
-    }, 1000 * 20);
+    }, 1000 * 2);
   });
 });
 

@@ -25,6 +25,7 @@ header {
   color: var(--terceira);
   background-color: var(--segunda);
   font-size: 19px;
+  padding: 20px;
 }
 
 main h2 {

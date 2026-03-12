@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
       usuarios.forEach((user) => {
         const tableRow = document.createElement("tr");
 
-        tableRow.innerHTML = `<td>${user.idUsuario}</td>
+        tableRow.innerHTML = `<td>${user.idusuario}</td>
                 <td>${user.nome}</td>
-                <td data-id="${user.idUsuario}" class="deletarUser"><img
+                <td data-id="${user.idusuario}" class="deletarUser"><img
                   src="../IMG/icons/trash.png"
                   alt="eliminar"
                   title="Eliminar"
@@ -49,10 +49,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const btnDeletar = event.target.closest(".deletarUser");
 
     if (btnDeletar) {
-      const idUsuario = btnDeletar.getAttribute("data-id");
+      const idusuario = btnDeletar.getAttribute("data-id");
 
-      if (confirm(`Tem certeza que deseja deletar o usuário ${idUsuario}?`)) {
-        fetch(`/adm/deletarUser/${idUsuario}`, {
+      if (confirm(`Tem certeza que deseja deletar o usuário ${idusuario}?`)) {
+        fetch(`/adm/deletarUser/${idusuario}`, {
           method: "DELETE",
           credentials: "include",
         })
