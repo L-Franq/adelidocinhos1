@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const path = require("path");
+const helmet = require("helmet");
 const app = express();
 const session = require("express-session");
 const PORT = process.env.PORT || 8080;
@@ -14,18 +15,22 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "fallback-de-seguranca",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,
-      maxAge: 100 * 60 * 60 * 24,
+      secure: true,
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 1000 * 60 * 60 * 24,
     },
   }),
 );
 
-//require("./databases/init");
-//require("./databases/seed");
+app.use(helmet());
+
+require("./databases/init");
+require("./databases/seed");
 
 const mainRoute = require("./routes/main");
 const admRoute = require("./routes/admRoutes");
