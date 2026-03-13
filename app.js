@@ -30,8 +30,23 @@ app.use(
 
 app.use(helmet());
 
-require("./databases/init");
-require("./databases/seed");
+const criarTabelas = require("./databases/init");
+const semearAdm = require("./databases/seed");
+
+async function startAPP() {
+  try {
+    await criarTabelas();
+    await semearAdm();
+
+    app.listen(PORT, HOST, () => {
+      console.log(`App running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Falha ao iniciar app", error)
+  }
+}
+
+startAPP();
 
 const mainRoute = require("./routes/main");
 const admRoute = require("./routes/admRoutes");

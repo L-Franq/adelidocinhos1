@@ -27,4 +27,4 @@ async function semearAdm() {
   } 
 }
 
-semearAdm();
+module.exports = semearAdm;

@@ -56,7 +56,7 @@ const criarTabelas = async () => {
   }
 };
 
-criarTabelas();
+module.exports = criarTabelas;
 
 /* Como "ver" os dados juntos?
 Para exibir o resumo junto com o dia,
