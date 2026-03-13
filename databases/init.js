@@ -67,9 +67,7 @@ const criarTabelas = async () => {
     console.log("Todas as tabelas foram verificadas/criadas!");
   } catch (err) {
     console.error("Erro ao criar tabelas:", err.message);
-  } finally {
-    process.exit();
-  }
+  } 
 };
 
 criarTabelas();

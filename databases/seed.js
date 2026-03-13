@@ -24,9 +24,7 @@ async function semearAdm() {
 
   } catch (err) {
     console.error("Erro ao inserir no Postgres:", err);
-  } finally {
-    process.exit(); 
-  }
+  } 
 }
 
 semearAdm();
