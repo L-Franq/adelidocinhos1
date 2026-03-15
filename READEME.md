@@ -50,7 +50,7 @@ O projeto está em desenvolvimento e será evoluído gradualmente conforme as ne
 
 ### Base de Dados
 
-- SQLite
+- PostgreSql (anteriormente foi Sqlite, mas devido a problemas com as plataformas de hospedagem, sobre a nao permanencia da db, fui obrigado a mudar de estrutura)
 
 ---
 
@@ -71,5 +71,5 @@ Github: https://github.com/L-Franq
 ```bash
 git clone https://github.com/L-Franq/adelidocinhos1.git
 cd adelidocinhos1
-npm install
+npm start
 ```

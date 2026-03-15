@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
+    locale: "pt-br",
 
     //FULLCALENDAR BUSCA DIRETO DO SERVIDOR
     events: {

@@ -87,7 +87,7 @@ formCadastro.addEventListener("submit", async (e) => {
   if (data.sucesso) {
     setTimeout(() => {
       mostrarAlerta("Bem-Vindo", "Cadastrado com sucesso.", "success");
-    }, 8000);
+    }, 1600);
 
     location.href = "/user/cadastrar-logar";
 
@@ -101,7 +101,7 @@ formCadastro.addEventListener("submit", async (e) => {
   } else
     setTimeout(() => {
       mostrarAlerta(data.erro, "Erro ao cadastrar", "error");
-    }, 8000);
+    }, 1600);
 });
 
 formLogin.addEventListener("submit", async (e) => {

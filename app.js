@@ -8,27 +8,26 @@ const session = require("express-session");
 const PORT = process.env.PORT || 8080;
 const HOST = "0.0.0.0";
 
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.set('trust proxy', 1)
+//app.set('trust proxy', 1)
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: true,
+      secure: false,
       httpOnly: true,
       sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 24,
     },
   }),
 );
-
-app.use(helmet());
 
 const criarTabelas = require("./databases/init");
 const semearAdm = require("./databases/seed");
@@ -38,11 +37,9 @@ async function startAPP() {
     await criarTabelas();
     await semearAdm();
 
-    app.listen(PORT, HOST, () => {
-      console.log(`App running on port ${PORT}`);
-    });
+      console.log(`Scripts executados`);
   } catch (error) {
-    console.error("Falha ao iniciar app", error)
+    console.error("Falha ao executar scripts", error)
   }
 }
 

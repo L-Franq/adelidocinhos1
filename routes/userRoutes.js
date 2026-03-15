@@ -13,7 +13,7 @@ router.get("/", userMiddleware, (req, res) => {
   );
 });
 
-router.get("/lista", (req, res) => {
+router.get("/lista",  userMiddleware, (req, res) => {
   res.sendFile(
     path.join(__dirname, "..", "public", "HTML", "listaDeUsuarios.html"),
   );
@@ -35,7 +35,7 @@ router.post("/cadastro", controlerLogin.cadastroUser);
 
 router.post("/marcar", userMiddleware, marcacaoController.postarMarcacaoUser);
 
-router.get("/marcacoes/mes", async (req, res) => {
+router.get("/marcacoes/mes", userMiddleware, async (req, res) => {
   const sql = `SELECT dia, turno FROM marcacoes`;
 
   try {
