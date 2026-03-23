@@ -11,9 +11,9 @@ const mostrarAlerta = (titulo, texto, icone) => {
     title: titulo,
     text: texto,
     icon: icone,
-    background: "#132640", // Cor do seu sistema
-    color: "#9f86a6", // Cor do seu texto
-    confirmButtonColor: "#fc80db", // Cor do seu botão
+    background: "#132640",
+    color: "#9f86a6",
+    confirmButtonColor: "#fc80db",
     iconColor: icone === "success" ? "#fc80db" : "#f2aee0",
   });
 };
@@ -46,7 +46,7 @@ formCadastro.addEventListener("submit", async (e) => {
   const emailInput = document.getElementById("cadastrarEmail").value;
   const telefoneInput = document.getElementById("cadastrarTelefone").value;
 
-  if (nomeInput === null || nomeInput === "") {
+  if (nomeInput === "") {
     pErro.classList.remove("hidden");
     pErro.classList.add("erro");
     pErro.innerText = "erro nos campos. verifique o seu nome!";
@@ -66,14 +66,14 @@ formCadastro.addEventListener("submit", async (e) => {
   ) {
     pErro.classList.remove("hidden");
     pErro.classList.add("erro");
-    pErro.innerText = "erro nos campos. verifique o seu numero!";
+    pErro.innerText = "erro nos campos. verifique o seu número, o máximo são 9 caracteres!";
     return;
   }
 
   if ((senhaInput === null || senhaInput === "") && senhaInput.length < 8) {
     pErro.classList.remove("hidden");
     pErro.classList.add("erro");
-    pErro.innerText = "erro. verifique a senha, no minimo 8 caracteres!";
+    pErro.innerText = "erro. verifique a senha, no mínimo 8 caracteres!";
     return;
   }
 

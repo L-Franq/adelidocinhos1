@@ -6,7 +6,6 @@
     <link rel="shortcut icon" href="../IMG/Adelia logo.jpeg" type="image/x-icon">
     <title>register</title>
     <link rel="stylesheet" href="../CSS/loginCadastro.css" />
-    <!-- SweetAlert2 CSS -->
     <link
       rel="stylesheet"
       href="../vendor/sweetalert2.css"
@@ -22,6 +21,7 @@
           id="cadastrarNome"
           type="text"
           placeholder="Nome"
+          required
         />
 
         <input
@@ -29,6 +29,7 @@
           id="cadastrarEmail"
           type="e-mail"
           placeholder="exemplo@gmail.com"
+          required
         />
 
         <input
@@ -37,6 +38,7 @@
           type="text"
           placeholder="+244 xxx xxx xxx"
           maxlength="9"
+          required
         />
 
         <input
@@ -44,6 +46,7 @@
           id="cadastrarSenha"
           type="Password"
           placeholder="Senha"
+          required
         />
 
         <p id="erro" class="hidden"></p>
@@ -61,6 +64,7 @@
           id="loginEmail"
           type="e-mail"
           placeholder="exemplo@gmail.com"
+          required
         />
 
         <input
@@ -68,6 +72,7 @@
           id="loginPassword"
           type="Password"
           placeholder="Senha"
+          required
         />
 
         <p id="erroL" class="hidden"></p>
@@ -78,9 +83,7 @@
       </form>
     </div>
 
-    <!-- SweetAlert2 JS -->
     <script src="../vendor/sweetalert2.js"></script>
-
     <script src="../JS/loginCadastrar.js"></script>
   </body>
 </html>
