@@ -29,12 +29,10 @@ app.use(
   }),
 );
 
-const criarTabelas = require("./databases/init");
 const semearAdm = require("./databases/seed");
 
 async function startAPP() {
   try {
-    await criarTabelas();
     await semearAdm();
 
       console.log(`Scripts executados`);
