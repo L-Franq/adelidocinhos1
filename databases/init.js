@@ -5,7 +5,7 @@ const criarTabelas = async () => {
     `CREATE TABLE IF NOT EXISTS usuarios(
       idUsuario SERIAL PRIMARY KEY,
       nome VARCHAR(255) NOT NULL,
-      email VARCHAR(255) UNIQUE,
+      email VARCHAR(255) UNIQUE NOT NULL,
       telefone VARCHAR(20) UNIQUE NOT NULL,
       senha varchar(255) NOT NULL
     )`,
@@ -13,7 +13,7 @@ const criarTabelas = async () => {
     `CREATE TABLE IF NOT EXISTS administradores(
       idAdm SERIAL PRIMARY KEY,
       nome VARCHAR(255) NOT NULL,
-      email VARCHAR(255) UNIQUE,
+      email VARCHAR(255) UNIQUE NOT NULL,
       telefone VARCHAR(20) UNIQUE NOT NULL,
       senha varchar(255) NOT NULL
     )`,
@@ -22,8 +22,8 @@ const criarTabelas = async () => {
       idMarc SERIAL PRIMARY KEY,
       idUsuario INTEGER REFERENCES usuarios(idUsuario), 
       dia DATE NOT NULL,          
-      turno VARCHAR(50) NOT NULL,        
-      descricao varchar(1000),
+      turno VARCHAR(20) NOT NULL,        
+      descricao TEXT,
       lugar VARCHAR(255),
       hora TIME,
       status VARCHAR(20) NOT NULL DEFAULT 'ativo',
@@ -33,7 +33,7 @@ const criarTabelas = async () => {
     `CREATE TABLE IF NOT EXISTS resum(
       idResumo SERIAL PRIMARY KEY,
       idMarc INTEGER REFERENCES marcacoes(idMarc),
-      conteudoResumo varchar(500)
+      conteudoResumo TEXT
     )`,
 
     `CREATE TABLE IF NOT EXISTS visitantes (
@@ -41,7 +41,7 @@ const criarTabelas = async () => {
       nome VARCHAR(255),
       email VARCHAR(255),
       telefone VARCHAR(20),
-      mensagem varchar(1000)
+      mensagem TEXT
     )`,
   ];
 
